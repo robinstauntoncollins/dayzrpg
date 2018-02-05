@@ -1,0 +1,71 @@
+Development began 05/02/2018
+
+
+Goal:
+
+Create a text adventure rpg in python based in the Dayz universe.
+
+Dayz was originally a mod for Arma 2 in which players find themselves
+on the coast of an unknown land in a post apocalyptic world where zombies 
+roam the streets. 
+
+They must survive against hunger, thirst, temperature, zombies, other players
+(hostile or friendly) 
+
+They must scavange for food, supplies and weapons to better deal with any
+dangers they encounter. 
+
+Dead is Dead.
+
+---------DESIGN----------
+
+Experience: Maybe to some extent but more a focus on 
+how players react to different situations and encounters
+
+Feel: Some russian land, russian names, signs, etc.
+
+Medical System:
+	Health
+	Broken bones
+	Infection - Zombies, Dirty water
+
+Survival:
+	Boiling water
+	Fire, axe, matches, 
+	Hunger & Thirst slowly decrease.
+
+Loot piles:
+	Types of buildings (residential, military, farm)
+	With 
+	
+Inventory:
+	Weapons, ammo, food, medical, backpack, 
+	clothes, 
+Random encounters
+
+Skills:
+
+Weapons:
+
+Combat:
+
+Zombies:
+
+Humans:
+Gunplay - cover, skill with weapons, weapons used
+number of enemies
+
+
+----------IMPLEMENTATION------------
+
+Gameplay: Real-time (not turn based)
+
+Combat - turn-based?
+
+Function parser to allow input text commands such as:
+
+apply bandage to leg, take pistol from backpack etc.
+
+
+Classes:
+Player, Inventory, 
