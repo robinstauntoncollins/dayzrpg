@@ -19,8 +19,41 @@ Dead is Dead.
 
 ---------DESIGN----------
 
-Experience: Maybe to some extent but more a focus on 
+
+CORE EXPERIENCE OF GAME (Most basic things to have a functioning, fun game):
+
+Player with stats (health, hunger, thirst), inventory slots (limited), bleeding, 
+Inventory: Weapons (melee, guns), medical (bandages, bloodbags, morphine)
+	Player has ability to view and arrange inventory, get rid of unwanted stuff. Put them in loot piles where they remain (Maybe until player leaves that area, city)
+	
+Zombies - random encouters, shoot them with guns, hit them with melee weapons, take damage.
+World - Start in 1 city, for example. Hospital, Firestation, houses, military tents.
+	Moving between these locations
+Loot piles which can be searched.
+
+
+
+
+
+FULL GAME IDEAS (additionial things to implement over time once Core games is implemented)
+Experience/Skills: Maybe to some extent but more a focus on 
 how players react to different situations and encounters
+
+World: Cities, towns, villages, Airfields, Farms, Coast, Wilderness
+	Forest, Military bases.
+	
+	All areas accessable from wilderness, coast, forest to simulate the fact that
+	the survivor could bypass towns, villages etc when going from one place to another. 
+
+	Survivor can go from Chernogorsk to North West airfield, for example, by first going through the wilderness.
+	However, donig this would drain hunger, thirst, temperature (if cold) a lot as it's a long way.
+	Survivor could also choose to go from town to town along the way from Chernogorsk to NW airfield to have 
+	the opportunity to restock on food and water.
+  
+	Procedurally generate villages or settlements when 
+
+	Graph theory - nodes to simulate actual Dayz map, nodes in between towns, etc. 
+	Distance between nodes determines how much hunger and thirst level increases. 
 
 Feel: Some russian land, russian names, signs, etc.
 
@@ -49,7 +82,10 @@ Weapons:
 
 Combat:
 
-Zombies:
+Zombies: Alert status: Not alerted, Alerted, Enraged
+	Headshot, bodyshots,
+	Speed of movement?
+	Damage (melee attack, biting, infection)
 
 Humans:
 Gunplay - cover, skill with weapons, weapons used
@@ -68,4 +104,7 @@ apply bandage to leg, take pistol from backpack etc.
 
 
 Classes:
-Player, Inventory, 
+Player, Inventory,
+
+
+Item: Weapons(Melee, Guns), Clothes, Comsumables(Food, Water, Medical), Tools(can opener, compass, map, Axe, Flashlight)
