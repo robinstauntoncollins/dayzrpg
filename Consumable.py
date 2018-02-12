@@ -7,10 +7,10 @@ class Bandage(Consumable):
     def __init__(self):
         super().__init__(name = "Bandage",
                          description = "A packaged bandage for covering wounds")
-    def apply():
+    def apply(self):
         '''Allows the player to apply a bandage to himself'''
         pass
-    def use():
+    def use(self):
         '''Allows player to apply a bandage to another character'''
         pass
 

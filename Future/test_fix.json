@@ -1,0 +1,49 @@
+{
+   "Lopatino":{
+      "desc":"A medium sized town with residential buildings and a large red industrial barn.",
+      "north east":"North West Airfield",
+      "south east":"Vybor",
+      "south":"Pustoshka",
+      "X Coordinate":2,
+      "Y Coordinate":4
+   },
+   "North West Airfield":{
+      "desc":"A large militar airfield with 6 large aircraft hangers and several military barracks and idustrial buildings.",
+      "east":"Grishino",
+      "south west":"Vybor",
+      "west":"Lopatino",
+      "X Coordinate":4,
+      "Y Coordinate":4
+   },
+   "Grishino":{
+      "desc":"A small village with a gas station, church and long low barn. Situated in a shallow valley with sloping corn fields on either side of the road which runs through the center. ",
+      "north east":"Devil's Castle",
+      "south east":"Kabanino",
+      "south west":"Kabanino",
+      "west":"North West Airfield",
+      "X Coordinate":5,
+      "Y Coordinate":4
+   },
+   "Dubrovka":{
+      "desc":"A medium sized village with mainly residential buildings. A farm complex sits on the edge of the village.",
+      "north":"Black Mountain",
+      "north east":"Krasnostav",
+      "east":"Berezino Inudstrial",
+      "south east":"Berezino",
+      "south west":"Gorka",
+      "west":"Devil's Castle",
+      "north west":"Gvozdno",
+      "X Coordinate":10,
+      "Y Coordinate":4
+   },
+   "Berezino Industrial":{
+      "desc":"A sprawling array of indstrial factories situated on the sea-side of large coastal road which runs through the center. There is a village located on the opposite side with several residential buildings and two 3-story apartment builings.",
+      "north":"North East Airfield",
+      "south west":"Berezino",
+	  "south":"Coast_13_5",
+      "west":"Dubrovka",
+      "north west":"Krasnostav",
+      "X Coordinate":13,
+      "Y Coordinate":4
+   }
+}

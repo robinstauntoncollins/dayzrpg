@@ -1,0 +1,87 @@
+{
+    "Lopatino": {
+        "desc": "A medium sized town with residential buildings and a large red industrial barn.",
+        "X Coordinate": 2,
+        "Y Coordinate": 4,
+        "name": "Lopatino",
+        "exits": {
+            "north east": "North West Airfield",
+            "south east": "Vybor",
+            "south": "Pustoshka"
+        }
+    },
+    "North West Airfield": {
+        "desc": "A large militar airfield with 6 large aircraft hangers and several military barracks and idustrial buildings.",
+        "X Coordinate": 4,
+        "Y Coordinate": 4,
+        "name": "North West Airfield",
+        "exits": {
+            "east": "Grishino",
+            "south west": "Vybor",
+            "west": "Lopatino"
+        }
+    },
+    "Coast_2_12": {
+        "desc": "Coast",
+        "X Coordinate": 2,
+        "Y Coordinate": 12,
+        "name": "Coast",
+        "exits": {
+            "north east": "Komarovo",
+            "east": "Coast_3_12",
+            "west": "Kamenka"
+        }
+    },
+    "Coast_3_12": {
+        "desc": "Coast",
+        "X Coordinate": 3,
+        "Y Coordinate": 12,
+        "name": "Coast",
+        "exits": {
+            "north": "Komarovo",
+            "north east": "Balota Airfield",
+            "east": "Balota",
+            "west": "Coast_2_12"
+        }
+    },
+    "Grishino": {
+        "desc": "A small village with a gas station, church and long low barn. Situated in a shallow valley with sloping corn fields on either side of the road which runs through the center. ",
+        "X Coordinate": 5,
+        "Y Coordinate": 4,
+        "name": "Grishino",
+        "exits": {
+            "north east": "Devil's Castle",
+            "south east": "Kabanino",
+            "south west": "Kabanino",
+            "west": "North West Airfield"
+        }
+    },
+    "Dubrovka": {
+        "desc": "A medium sized village with mainly residential buildings. A farm complex sits on the edge of the village.",
+        "X Coordinate": 10,
+        "Y Coordinate": 4,
+        "name": "Dubrovka",
+        "exits": {
+            "north": "Black Mountain",
+            "north east": "Krasnostav",
+            "east": "Berezino Inudstrial",
+            "south east": "Berezino",
+            "south west": "Gorka",
+            "west": "Devil's Castle",
+            "north west": "Gvozdno"
+        }
+    },
+    "Berezino Industrial": {
+        "desc": "A sprawling array of indstrial factories situated on the sea-side of large coastal road which runs through the center. There is a village located on the opposite side with several residential buildings and two 3-story apartment builings.",
+        "X Coordinate": 13,
+        "Y Coordinate": 4,
+        "name": "Berezino Industrial",
+        "exits": {
+            "north": "North East Airfield",
+            "south west": "Berezino",
+            "south": "Coast_13_5",
+            "west": "Dubrovka",
+            "north west": "Krasnostav"
+        }
+    }
+}
