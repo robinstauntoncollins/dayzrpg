@@ -1,0 +1,13 @@
+"Player":{
+    "info":{
+        "name":"Survivor",
+        "sex":"male"
+        },
+    "inventory":{
+        "main": {"items":{},"space":},
+        "toolbelt":{},
+        "backpack":{}
+        
+    }
+
+}

@@ -2,7 +2,6 @@ import config
 import Items
 import random
 import Room
-from config import DESC
 
 class Player(object):
     
@@ -24,8 +23,8 @@ class Player(object):
         self.inventory = [Items.Bandage(), Items.Roadflares()]
         self.primary = []
         self.secondry = []
-        self.got_backpack = False
-        self.backpack = []
+        self.got_backpack = True
+        self.backpack = [Items.Crowbar(), Items.Rock()]
         self.toolbelt = [Items.Flashlight()]
         
         
@@ -33,14 +32,14 @@ class Player(object):
         return self.hp > 0
     
     def print_inventory(self):
-        print("Items")
+        print('='*2+"Items"+'='*2)
         for item in self.inventory:
             print(item.name)
-        print("Toolbelt")
+        print('='*2+"Toolbelt"+'='*2)
         for item in self.toolbelt:
             print(item.name)
         if self.got_backpack:
-            print("Backpack")
+            print('='*2+"Backpack"+'='*2)
             for item in self.backpack:
                 print(item.name)
 
@@ -50,7 +49,7 @@ class Player(object):
             self.location  = room.exits[direction]
             #room = Room.Location(self.location)
         else:
-            print("You can't go that way")
+            print("You can't go that way\n")
 
     def attack(self, enemy):
         best_weapon = None
@@ -73,14 +72,17 @@ class Player(object):
 
     def flee(self, tile):
         """Moves the player randomly to an adjacent tile"""
-        available_moves = tile.adjacent_moves()
-        r = random.randint(0, len(available_moves) - 1)
-        self.do_action(available_moves[r])
+##        available_moves = tile.adjacent_moves()
+##        r = random.randint(0, len(available_moves) - 1)
+##        self.do_action(available_moves[r])
+        pass
 
     def equip_primary(self, item):
         """Equips an item from player's inventory"""
         # Does player have this in their inventory?
-        if item not in self.inventory:
+        on_player = [self.inventory, self.backpack, self.toolbelt]
+        print(on_player)
+        if item not in on_player:
             return "You don't have a {} in your inventory".format(item.name)
         # Can player equip this item here? (Must be a weapon)
         _parent_type = type(item).__bases__[0]
@@ -125,7 +127,8 @@ class Player(object):
         self.inventory.append(item)
         return "You took the {}".format(item.name)
 
-    
+
 if __name__ == '__main__':
     player = Player()
-    player.move_direction('north',player.location)
+    player.primary
+    player.equip_primary(player.backpack[0])

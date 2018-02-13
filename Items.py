@@ -79,7 +79,8 @@ class Bandage(Consumable):
                          amount = 1)
     def apply(self):
         '''Allows the player to apply a bandage to himself'''
-        pass
+        self.amount -=1
+        return "You apply a bandage to yourself"
 
 
 if __name__ == '__main__':

@@ -1,0 +1,10 @@
+worldItems = {
+    "Item name":{
+        GROUNDDESC:"",
+        SHORTDESC:"",
+        LONGDESC:"",
+        TAKEABLE:"",
+        DESCWORDS:["",""]  
+    },
+    ...
+}

@@ -11,9 +11,9 @@ class Game(cmd.Cmd):
         
     prompt = '\n>'
 
-    def dafault(self, arg):
+    def default(self, arg):
         """Called when none of other do_* commands match"""
-        print("I do not understand that ocmmand.Type 'help' for a list of commands.")
+        print("I do not understand that ocmmand. Type 'help' for a list of commands.")
 
     def do_quit(self, arg):
         """Quit the game"""
@@ -71,15 +71,6 @@ class Game(cmd.Cmd):
         self.location = Location(self.player.location)
         self.location.intro_text()
 
-    do_n = do_north
-    do_ne = do_northeast
-    do_e = do_east
-    do_se = do_southeast
-    do_s = do_south
-    do_sw = do_southwest
-    do_w = do_west
-    do_nw = do_northwest
-
     def do_inventory(self, arg):
         """Display a list of items in your inventory"""
         self.player.print_inventory()
@@ -106,13 +97,30 @@ class Game(cmd.Cmd):
         else:
             print("You don't see much in that direction")
 
-
     def do_take(self, arg):
         """Take an item from ground to inventory"""
         self.player.take(arg)
         return
+    def do_hold(self, arg):
+        """Equips weapon from inventory to primary or secondary slot"""
+        self.player.equip_primary(arg)
+        
     def do_drop(self, arg):
         pass
+    def do_useItem(self,arg):
+        """Command to use a variety of items"""
+        pass
+
+    do_n = do_north
+    do_ne = do_northeast
+    do_e = do_east
+    do_se = do_southeast
+    do_s = do_south
+    do_sw = do_southwest
+    do_w = do_west
+    do_nw = do_northwest
+
+    do_i = do_inventory
 
 if __name__ == '__main__':
     print('='*5+" DayZ RPG "+'='*5)

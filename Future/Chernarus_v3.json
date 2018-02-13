@@ -506,7 +506,10 @@
         "name": "Chernogorsk",
         "exits": {
             "north east": "Mogilevka",
-            "east": "Prigorodki",
+            "east": "Coast_7_11",
+            "south east": "Chernogorsk_Docks",
+            "south": "Chernogorsk_Industrial",
+            "south west": "Coast_5_12",
             "west": "Balota Airfield",
             "north west": "Kozlovka"
         }

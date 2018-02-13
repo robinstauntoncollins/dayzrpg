@@ -2,7 +2,6 @@ import textwrap
 import config
 import json
 import r_world
-import actions
 
 
 class MapTile(object):
