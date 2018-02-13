@@ -25,6 +25,15 @@ def get_location(loc):
     for location,info in world.items():
         if loc == location:
             return location,info
+
+##def spawn_loot(room):
+##    """A function to spawn loot in a Room when it is created
+##    based on the type of room"""
+##    thisRoom=get_world_data(room)
+##    if thisRoom[config.LOOTTYPE] = 'residential':
+        
+    
+    
             
 
 

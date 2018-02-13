@@ -106,7 +106,9 @@ class Game(cmd.Cmd):
         self.player.equip_primary(arg)
         
     def do_drop(self, arg):
-        pass
+        """Command should call drop_from_inventory function in player class"""
+        self.player.drop_from_inventory(arg)
+        
     def do_useItem(self,arg):
         """Command to use a variety of items"""
         pass

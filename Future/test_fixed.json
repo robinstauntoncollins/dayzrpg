@@ -8,7 +8,8 @@
             "north east": "North West Airfield",
             "south east": "Vybor",
             "south": "Pustoshka"
-        }
+        },
+        "ground": []
     },
     "North West Airfield": {
         "desc": "A large militar airfield with 6 large aircraft hangers and several military barracks and idustrial buildings.",
@@ -19,7 +20,8 @@
             "east": "Grishino",
             "south west": "Vybor",
             "west": "Lopatino"
-        }
+        },
+        "ground": []
     },
     "Coast_2_12": {
         "desc": "Coast",
@@ -30,7 +32,8 @@
             "north east": "Komarovo",
             "east": "Coast_3_12",
             "west": "Kamenka"
-        }
+        },
+        "ground": []
     },
     "Coast_3_12": {
         "desc": "Coast",
@@ -42,7 +45,8 @@
             "north east": "Balota Airfield",
             "east": "Balota",
             "west": "Coast_2_12"
-        }
+        },
+        "ground": []
     },
     "Grishino": {
         "desc": "A small village with a gas station, church and long low barn. Situated in a shallow valley with sloping corn fields on either side of the road which runs through the center. ",
@@ -54,7 +58,8 @@
             "south east": "Kabanino",
             "south west": "Kabanino",
             "west": "North West Airfield"
-        }
+        },
+        "ground": []
     },
     "Dubrovka": {
         "desc": "A medium sized village with mainly residential buildings. A farm complex sits on the edge of the village.",
@@ -69,7 +74,8 @@
             "south west": "Gorka",
             "west": "Devil's Castle",
             "north west": "Gvozdno"
-        }
+        },
+        "ground": []
     },
     "Berezino Industrial": {
         "desc": "A sprawling array of indstrial factories situated on the sea-side of large coastal road which runs through the center. There is a village located on the opposite side with several residential buildings and two 3-story apartment builings.",
@@ -82,6 +88,7 @@
             "south": "Coast_13_5",
             "west": "Dubrovka",
             "north west": "Krasnostav"
-        }
+        },
+        "ground": []
     }
 }

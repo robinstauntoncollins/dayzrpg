@@ -27,8 +27,8 @@ NW = 'north west'
 U = 'up'
 D = 'down'
 
-WORLDPATH = r'D:\Users\RSTAUNTO\Desktop\Python\dayzrpg\Future\Chernarus_v2.json'
-TESTPATH = r'D:\Users\RSTAUNTO\Desktop\Python\dayzrpg\Future\test_fixed.json'
+WORLDPATH = r'D:\Users\RSTAUNTO\Desktop\Python\dayzrpg\Future\Chernarus_v3.json'
+TESTPATH = r'D:\Users\RSTAUNTO\Desktop\Python\dayzrpg\Future\test_fix.json'
 location_types = ['large city', 'city', 'large town',
                'town', 'small town', 'village',
                'small vilage', 'airfield', 'military base']
@@ -98,7 +98,7 @@ def write_map(template):
         
     return graph
 
-
+##def add_info(world, 
 
 def add_locations(world, template):
     world = json.loads(world)
@@ -134,7 +134,7 @@ def delete_key(location,key):
 
 def add_key(location,key):
     """Adds a key to a single location"""
-    location[key] = ''
+    location[key] = []
         
 def add_sub_dict(location, dict_name, dict_itself):
     """Adds a sub dictionary to a single location"""
@@ -157,15 +157,10 @@ def write_new_world(world):
         new.write(world_json)
     return
 
-def fix_map(world):
+def edit(world):
     for k,v in world.items():
-        #print(k)
-        exits = get_exits(v) # gets exits in current location into a single dict
-       # print(exits)
-        add_sub_dict(world[k],EXITS,exits) #Adds new key in this location with key 'exits' 
-        for direction in DIRECTIONS: # 
-            if direction in v:
-                del v[direction]
+        v[GROUND] = []
+
     return world
 
 def add_names(world):
@@ -180,8 +175,8 @@ def fix_names(world):
     return world
         
 if __name__ == '__main__':
-    fix_world = load(WORLDPATH)
-    new_world = fix_map(fix_world)
+    fix_world = load(TESTPATH)
+    new_world = edit(fix_world)
     #print(new_world)
     write_new_world(new_world)
     

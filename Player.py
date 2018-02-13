@@ -27,22 +27,11 @@ class Player(object):
         self.backpack = [Items.Crowbar(), Items.Rock()]
         self.toolbelt = [Items.Flashlight()]
         
-        
+    #STATUS#    
     def is_alive(self):
         return self.hp > 0
     
-    def print_inventory(self):
-        print('='*2+"Items"+'='*2)
-        for item in self.inventory:
-            print(item.name)
-        print('='*2+"Toolbelt"+'='*2)
-        for item in self.toolbelt:
-            print(item.name)
-        if self.got_backpack:
-            print('='*2+"Backpack"+'='*2)
-            for item in self.backpack:
-                print(item.name)
-
+    #MOVEMENT#
     def move_direction(self, direction, room):
         if direction in room.exits.keys():
             print("You move to the {}".format(direction))
@@ -50,7 +39,7 @@ class Player(object):
             #room = Room.Location(self.location)
         else:
             print("You can't go that way\n")
-
+    #COMBAT#
     def attack(self, enemy):
         best_weapon = None
         max_dmg = 0
@@ -76,6 +65,20 @@ class Player(object):
 ##        r = random.randint(0, len(available_moves) - 1)
 ##        self.do_action(available_moves[r])
         pass
+
+
+    #INVENTORY/EQUIPMENT#
+    def print_inventory(self):
+        print('='*2+"Items"+'='*2)
+        for item in self.inventory:
+            print(item.name)
+        print('='*2+"Toolbelt"+'='*2)
+        for item in self.toolbelt:
+            print(item.name)
+        if self.got_backpack:
+            print('='*2+"Backpack"+'='*2)
+            for item in self.backpack:
+                print(item.name)
 
     def equip_primary(self, item):
         """Equips an item from player's inventory"""
@@ -114,21 +117,42 @@ class Player(object):
             self.inventory.append(self.primary.pop())
         else:
             print("You currently have nothing equipped in your primary slot")
-  
+
+    def get_item_from_string(self, string, inv_location):
+        """This function takes the string argument passed by command and translates that into
+        a class object in one of the players inventory spaces"""
+        print(string)
+        print(inv_location)
+        for item in inv_location:
+            print(item.name)
+            if item.name == string:
+                return item
+            else:
+                print("Could not find item there")
+                return None
         
-    def drop_from_inventory(self, item):
-        if item not in self.inventory:
-            return "You don't have a {} to drop".format(item.name)
+    def drop_from_main_inventory(self, string):
+        """Function should take item from player inventory and add it to GROUND location
+        of the current room"""
+        item = self.get_item_from_string(string, self.inventory)
+        print(item)
+        if item == None:
+            return "You don't have a {} to drop".format(item)
         else:
             self.inventory.remove(item)
             return "You dropped a {}".format(item.name)
 
     def take(self, item):
+        """Function to take item from area/location into inventory"""
         self.inventory.append(item)
         return "You took the {}".format(item.name)
 
 
 if __name__ == '__main__':
     player = Player()
-    player.primary
-    player.equip_primary(player.backpack[0])
+    player.print_inventory()
+    print()
+    player.drop_from_main_inventory("Roadflares")
+    print()
+    player.print_inventory()
+    

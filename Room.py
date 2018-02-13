@@ -30,6 +30,7 @@ class Location(MapTile):
         self.name = self.info[config.NAME]
         self.desc = self.info[config.DESC]
         self.exits = self.info[config.EXITS]
+        #self.
         
     def intro_text(self):
         print(self.name+'\n'+'='*len(self.name))
