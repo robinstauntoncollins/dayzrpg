@@ -32,7 +32,7 @@ TESTPATH = r'D:\Users\RSTAUNTO\Desktop\Python\dayzrpg\Future\test_fix.json'
 location_types = ['large city', 'city', 'large town',
                'town', 'small town', 'village',
                'small vilage', 'airfield', 'military base']
-DIRECTIONS = [N,NE,E,SE,S,SW,W,NW,U,D]
+DIRECTIONS = [N, NE, E, SE, S, SW, W, NW, U, D]
 
 #SCHEMAs
 #Locations
@@ -66,14 +66,13 @@ Chernarus = {
         }
     }
 
-
-
 town_template = [DESC, N, NE, E, SE, S, SW, W, NW, XCOORD, YCOORD]
 
 building_template = []
 
 container_template = []
-#graph, template
+
+
 def write_map(template):
     graph = {}
     while True:
@@ -98,7 +97,10 @@ def write_map(template):
         
     return graph
 
-##def add_info(world, 
+
+def add_ground_items(world,item):
+    for k,v in world.items():
+        v[GROUND].append(item)
 
 def add_locations(world, template):
     world = json.loads(world)
@@ -122,23 +124,28 @@ def add_locations(world, template):
         
     return graph
 
+
 def load(PATH):
     """Loads a world from a given filepath and parses it into a dictionary"""
     with open(PATH,'r') as file:
         world = json.load(file)
     return world
 
+
 def delete_key(location,key):
     """Deletes an entry from a location"""
     del location[key]
 
+
 def add_key(location,key):
     """Adds a key to a single location"""
     location[key] = []
-        
+
+
 def add_sub_dict(location, dict_name, dict_itself):
     """Adds a sub dictionary to a single location"""
     location[dict_name] = dict_itself
+
 
 def get_exits(location):
     """Given a particular location, returns exits"""
@@ -147,7 +154,8 @@ def get_exits(location):
         if k in DIRECTIONS:
             exits[k] = v
     return exits
-                                      
+
+
 def write_new_world(world):
     """Converts world dict to json and writes it to a new file"""
     world_json = json.dumps(world, indent=4, sort_keys=False)
@@ -157,35 +165,30 @@ def write_new_world(world):
         new.write(world_json)
     return
 
+
 def edit(world):
     for k,v in world.items():
         v[GROUND] = []
 
     return world
 
+
 def add_names(world):
     for k,v in world.items():
         v[NAME] = k
     return world
+
 
 def fix_names(world):
     for k,v in world.items():
         if k.startswith('Coast'):
             v[NAME] = 'Coast'
     return world
-        
+
+
 if __name__ == '__main__':
-    fix_world = load(TESTPATH)
+    fix_world = load(WORLDPATH)
     new_world = edit(fix_world)
     #print(new_world)
     write_new_world(new_world)
-    
-##    location = {}
-##    world = {"":{},
-##             "":{},
-##             "":{}
-##             }
-##    for loc in world.values():
-##        add_sub_dict(location,EXITS)
-##        
-##    print(world)
+

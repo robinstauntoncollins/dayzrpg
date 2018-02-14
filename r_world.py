@@ -1,3 +1,4 @@
+"""A module with functions to handle interaction with world JSON file"""
 import Room
 import json
 import config
@@ -5,20 +6,22 @@ import config
 WORLDPATH = r'D:\Users\RSTAUNTO\Desktop\Python\dayzrpg\resources\Chernarus_v3.json'
 start = config.starting_location
 
+
 def get_world_data(room_name=None):
-    '''A function that returns world dictionary if no name is given
-    and returns specifc room if name is given.'''
+    """A function that returns world dictionary if no name is given
+    and returns specific room if name is given."""
     with open(WORLDPATH, 'r') as file:
         world = json.load(file)
         
-    if room_name == None:
+    if room_name is None:
         return world
     else:
         return world[room_name]
 
+
 def get_location(loc):
-    '''Get world location info based on their x,y coords'''
-    if loc == None:
+    """Get world location info based on their x,y coords"""
+    if loc is None:
         print("r_world.get_location() Failed!")
         return
     world = get_world_data()
@@ -26,16 +29,13 @@ def get_location(loc):
         if loc == location:
             return location,info
 
+
 ##def spawn_loot(room):
 ##    """A function to spawn loot in a Room when it is created
 ##    based on the type of room"""
 ##    thisRoom=get_world_data(room)
 ##    if thisRoom[config.LOOTTYPE] = 'residential':
         
-    
-    
-            
-
 
 if __name__ == '__main__':
     #world = get_world_data(start)

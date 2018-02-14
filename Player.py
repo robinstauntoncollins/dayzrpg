@@ -6,32 +6,32 @@ import Room
 class Player(object):
     
     def __init__(self, name = "Survivor", sex = "Male"):
-        ###PLAYERINFO##
-        ###STATS###
+        # PLAYER_INFO
+        # STATS
         self.name = name
         self.sex = sex
         self.hp = 12000
         self.hunger = 100
         self.thirst = 100
 
-        ###FLAGS###
+        # FLAGS
         self.bleeding = False
-        ###OTHER###
+        # OTHER
         self.location = config.starting_location
         self.victory = False
-        ###EQUIPMENT###
+        # EQUIPMENT
         self.inventory = [Items.Bandage(), Items.Roadflares()]
         self.primary = []
-        self.secondry = []
+        self.secondary = []
         self.got_backpack = True
         self.backpack = [Items.Crowbar(), Items.Rock()]
         self.toolbelt = [Items.Flashlight()]
         
-    #STATUS#    
+    # STATUS
     def is_alive(self):
         return self.hp > 0
     
-    #MOVEMENT#
+    # MOVEMENT
     def move_direction(self, direction, room):
         if direction in room.exits.keys():
             print("You move to the {}".format(direction))
@@ -39,7 +39,8 @@ class Player(object):
             #room = Room.Location(self.location)
         else:
             print("You can't go that way\n")
-    #COMBAT#
+
+    # COMBAT
     def attack(self, enemy):
         best_weapon = None
         max_dmg = 0
@@ -49,8 +50,7 @@ class Player(object):
                 if i.damage > max_dmg:
                     max_dmg = i.damage
                     best_weapon = i
-                    
-      
+
         print("You use {} against {}!".format(best_weapon.name, enemy.name))
         enemy.hp -= best_weapon.damage
         if not enemy.is_alive():
@@ -67,7 +67,7 @@ class Player(object):
         pass
 
 
-    #INVENTORY/EQUIPMENT#
+    # INVENTORY/EQUIPMENT
     def print_inventory(self):
         print('='*2+"Items"+'='*2)
         for item in self.inventory:
@@ -92,16 +92,16 @@ class Player(object):
         if not _parent_type == Items.Weapon: 
             return "You can't equip a {} in your primary slot".format(item.name)
 
-        #Is there an item already present in primary?
+        # Is there an item already present in primary?
         if self.primary:
             print("You put your {} back in your inventory".format(self.primary[0].name))
-            self.inventory.append(self.primary.pop()) #put currently equipped it back in inventory
-            self.primary.append(item) #Equip item
+            self.inventory.append(self.primary.pop())  # put currently equipped it back in inventory
+            self.primary.append(item)  # Equip item
             print("You equip your {}".format(self.primary[0].name))
-        #If primary slot free
+        # If primary slot free
         else:
             self.inventory.remove(item)
-            self.primary.append(item) #Add this item to primary slot
+            self.primary.append(item)  # Add this item to primary slot
             print("You equip your {}".format(self.primary[0].name))
 
     def equip_secondary(self, item):
@@ -136,7 +136,7 @@ class Player(object):
         of the current room"""
         item = self.get_item_from_string(string, self.inventory)
         print(item)
-        if item == None:
+        if item is None:
             return "You don't have a {} to drop".format(item)
         else:
             self.inventory.remove(item)
@@ -155,4 +155,3 @@ if __name__ == '__main__':
     player.drop_from_main_inventory("Roadflares")
     print()
     player.print_inventory()
-    

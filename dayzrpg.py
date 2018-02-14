@@ -3,6 +3,7 @@ from Room import Location
 import cmd
 from Player import Player
 
+
 class Game(cmd.Cmd):
     def __init__(self):
         cmd.Cmd.__init__(self)
@@ -13,7 +14,7 @@ class Game(cmd.Cmd):
 
     def default(self, arg):
         """Called when none of other do_* commands match"""
-        print("I do not understand that ocmmand. Type 'help' for a list of commands.")
+        print("I do not understand that command. Type 'help' for a list of commands.")
 
     def do_quit(self, arg):
         """Quit the game"""
@@ -83,14 +84,14 @@ class Game(cmd.Cmd):
         "look <item>" - display the description of an item on the ground or in your inventory"""
         lookingAt = arg.lower()
         # Just 'look' command
-        if lookingAt =='':
+        if lookingAt == '':
             self.location.intro_text()
             return
-        #'look exits' command
+        # 'look exits' command
         if lookingAt == 'exits':
             self.location.show_exits()
             return
-        #'look <direction>' command
+        # 'look <direction>' command
         if lookingAt in config.DIRECTIONS and lookingAt in self.location.exits:
             print("You see {} to the {}".format(self.location.exits[lookingAt], lookingAt))
 
@@ -101,6 +102,7 @@ class Game(cmd.Cmd):
         """Take an item from ground to inventory"""
         self.player.take(arg)
         return
+
     def do_hold(self, arg):
         """Equips weapon from inventory to primary or secondary slot"""
         self.player.equip_primary(arg)
@@ -124,6 +126,7 @@ class Game(cmd.Cmd):
 
     do_i = do_inventory
 
+
 if __name__ == '__main__':
     print('='*5+" DayZ RPG "+'='*5)
     print('='*18)
@@ -132,4 +135,3 @@ if __name__ == '__main__':
     print()
     g = Game()
     g.cmdloop()
-    

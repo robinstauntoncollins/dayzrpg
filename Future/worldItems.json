@@ -1,10 +1,16 @@
-worldItems = {
-    "Item name":{
-        GROUNDDESC:"",
-        SHORTDESC:"",
-        LONGDESC:"",
-        TAKEABLE:"",
-        DESCWORDS:["",""]  
+{
+    "axe":{
+        "ground":"A rusty axe lies on the ground",
+        "shortdesc":"a rusty axe",
+        "longdesc":"A full sized wood-chopping axe with a rusted and dull axe head.",
+        "takeable": true,
+        "descwords":["axe"]
     },
-    ...
+    "rock":{
+        "ground":"A a rock lies here",
+        "shortdesc":"a large rock",
+        "longdesc":"A a round-ish dull grey rock about the size of your head.",
+        "takeable": true,
+        "descwords":["rock"]
+    }
 }

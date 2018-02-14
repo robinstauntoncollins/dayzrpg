@@ -1,0 +1,720 @@
+{
+    "North East Airfield": {
+        "desc": "This is the North East Airfield: Barracks, Industrial Buildings, ATC",
+        "X Coordinate": 12,
+        "Y Coordinate": 1,
+        "name": "North East Airfield",
+        "exits": {
+            "south east": "Berezino Industrial",
+            "south west": "Krasnostav"
+        },
+        "ground": []
+    },
+    "Devil's Castle": {
+        "desc": "A large ruined castle with two large square towers.",
+        "X Coordinate": 6,
+        "Y Coordinate": 2,
+        "name": "Devil's Castle",
+        "exits": {
+            "north east": "Gvozdno",
+            "east": "Black Mountain",
+            "south east": "Dubrovka",
+            "south": "Gorka",
+            "south west": "Grishino"
+        },
+        "ground": []
+    },
+    "Gvozdno": {
+        "desc": "A medium sized village with residential and farm buildings.",
+        "X Coordinate": 8,
+        "Y Coordinate": 2,
+        "name": "Gvozdno",
+        "exits": {
+            "north east": "Krasnostav",
+            "east": "Black Mountain",
+            "south east": "Dubrovka",
+            "south west": "Devil's Castle"
+        },
+        "ground": []
+    },
+    "Black Mountain": {
+        "desc": "A ruin of castle walls, with a clearing in the middle, situated on a hill, surrounded by dense pine forest.",
+        "X Coordinate": 10,
+        "Y Coordinate": 2,
+        "name": "Black Mountain",
+        "exits": {
+            "north east": "Krasnostav",
+            "south": "Dubrovka",
+            "south west": "Devil's Castle",
+            "west": "Gvozdno"
+        },
+        "ground": []
+    },
+    "Krasnostav": {
+        "desc": "A medium sized town with residential and farm buildings",
+        "X Coordinate": 11,
+        "Y Coordinate": 2,
+        "name": "Krasnostav",
+        "exits": {
+            "north east": "North East Airfield",
+            "south east": "Berezino Industrial",
+            "south": "Dubrovka",
+            "south west": "Black Mountain",
+            "west": "Gvozdno"
+        },
+        "ground": []
+    },
+    "Lopatino": {
+        "desc": "A medium sized town with residential buildings and a large red industrial barn.",
+        "X Coordinate": 2,
+        "Y Coordinate": 4,
+        "name": "Lopatino",
+        "exits": {
+            "north east": "North West Airfield",
+            "south east": "Vybor",
+            "south": "Pustoshka"
+        },
+        "ground": []
+    },
+    "North West Airfield": {
+        "desc": "A large military airfield with 6 large aircraft hangers and several military barracks and industrial buildings.",
+        "X Coordinate": 4,
+        "Y Coordinate": 4,
+        "name": "North West Airfield",
+        "exits": {
+            "east": "Grishino",
+            "south west": "Vybor",
+            "west": "Lopatino"
+        },
+        "ground": []
+    },
+    "Grishino": {
+        "desc": "A small village with a gas station, church and long low barn. Situated in a shallow valley with sloping corn fields on either side of the road which runs through the center. ",
+        "X Coordinate": 5,
+        "Y Coordinate": 4,
+        "name": "Grishino",
+        "exits": {
+            "north east": "Devil's Castle",
+            "south east": "Kabanino",
+            "south west": "Kabanino",
+            "west": "North West Airfield"
+        },
+        "ground": []
+    },
+    "Dubrovka": {
+        "desc": "A medium sized village with mainly residential buildings. A farm complex sits on the edge of the village.",
+        "X Coordinate": 10,
+        "Y Coordinate": 4,
+        "name": "Dubrovka",
+        "exits": {
+            "north": "Black Mountain",
+            "north east": "Krasnostav",
+            "east": "Berezino Inudstrial",
+            "south east": "Berezino",
+            "south west": "Gorka",
+            "west": "Devil's Castle",
+            "north west": "Gvozdno"
+        },
+        "ground": []
+    },
+    "Berezino Industrial": {
+        "desc": "A sprawling array of industrial factories situated on the sea-side of large coastal road which runs through the center. There is a village located on the opposite side with several residential buildings and two 3-story apartment buildings.",
+        "X Coordinate": 13,
+        "Y Coordinate": 4,
+        "name": "Berezino Industrial",
+        "exits": {
+            "north": "North East Airfield",
+            "south west": "Berezino",
+            "south": "Coast_13_5",
+            "west": "Dubrovka",
+            "north west": "Krasnostav"
+        },
+        "ground": []
+    },
+    "Vybor": {
+        "desc": " A large town with many residential houses, a supermarket, school, gas station and a medium sized industrial complex on the north west edge of town. ",
+        "X Coordinate": 3,
+        "Y Coordinate": 5,
+        "name": "Vybor",
+        "exits": {
+            "north east": "North West Airfield",
+            "east": "Kabanino",
+            "south west": "Pustoshka",
+            "north west": "Lopatino"
+        },
+        "ground": []
+    },
+    "Kabanino": {
+        "desc": "A medium village with a farm complex on the north east side of the road and several residantial buildings on the south west side. There is an orchard of apple trees on this side. A main road runs through the center of the village. A church sits, slightly elevated, on the north side of the village at a crossroads.",
+        "X Coordinate": 5,
+        "Y Coordinate": 6,
+        "name": "Kabanino",
+        "exits": {
+            "north east": "Grishino",
+            "south east": "Stary Sobor",
+            "south west": "Veresnik",
+            "west": "Vybor",
+            "north west": "North West Airfield"
+        },
+        "ground": []
+    },
+    "Gorka": {
+        "desc": "A large village with a farm complex on the north side of the east-west road. Several residential buildings are grouped on the south side.",
+        "X Coordinate": 9,
+        "Y Coordinate": 5,
+        "name": "Gorka",
+        "exits": {
+            "north east": "Dubrovka",
+            "east": "Berezino",
+            "south east": "Polana",
+            "south west": "Novy Sobor",
+            "north west": "Devil's Castle"
+        },
+        "ground": []
+    },
+    "Berezino": {
+        "desc": "A large town with a large 5 story hospital building at the center. It is surrounded by many residential buildings. The town square has a large concrete platform on which sits a T-34 tank. It's barrel is pointing east. Military tents have been erected next to the hospital and wire fencing surrounds the area. It appears deserted now, however. This town also includes a farm complex on the southern edge, a supermarket, a construction site.",
+        "X Coordinate": 12,
+        "Y Coordinate": 5,
+        "name": "Berezino",
+        "exits": {
+            "north east": "Berezino Industrial",
+            "east": "Coast_13_5",
+            "south east": "Nizhynoye",
+            "south west": "Polana",
+            "west": "Gorka",
+            "north west": "Dubrovka"
+        },
+        "ground": []
+    },
+    "Coast_13_5": {
+        "desc": "Coast",
+        "X Coordinate": 13,
+        "Y Coordinate": 5,
+        "name": "Coast",
+        "exits": {
+            "north": "Berezino Industrial",
+            "south": "Nizhynoye",
+            "east": "Berezino"
+        },
+        "ground": []
+    },
+    "Pustoshka": {
+        "desc": "A large village with many residential buildings, a farm complex, an industrial complex, a supermarket and a church. ",
+        "X Coordinate": 3,
+        "Y Coordinate": 6,
+        "name": "Pustoshka",
+        "exits": {
+            "north": "Lopatino",
+            "north east": "Vybor",
+            "east": "Veresnik",
+            "south east": "Rogovo/Pogorevka",
+            "south": "Green Mountain",
+            "south west": "Zelenogorsk"
+        },
+        "ground": []
+    },
+    "Veresnik": {
+        "desc": "A small, isolated hill, sparsely covered with deciduous trees. Next to the hill, nestled in a thicket of trees is medium sized military complex. It has a 2 meter wall surrounded it. There is an entrance on the north and south sides as well as a gap in the south west side. Inside the complex is a large two-story police station and three long, low military barracks.",
+        "X Coordinate": 4,
+        "Y Coordinate": 6,
+        "name": "Veresnik",
+        "exits": {
+            "north east": "Kabanino",
+            "south": "Rogovo/Pogorevka",
+            "west": "Pustoshka"
+        },
+        "ground": []
+    },
+    "Stary Sobor": {
+        "desc": "A medium sized town with a large hill on its north west side. There are many residential buildings, a supermarket, a small lake. There is a large, red, industrial barn on the south east side as well as a farm complex. On the north west side, between the farm buildings and the hill is a large open car park. There are 7 military tents in this space. ",
+        "X Coordinate": 6,
+        "Y Coordinate": 6,
+        "name": "Stary Sobor",
+        "exits": {
+            "east": "Novy Sobor",
+            "south": "Zub",
+            "south west": "Rogovo/Pogorevka",
+            "north west": "Kabanino"
+        },
+        "ground": []
+    },
+    "Novy Sobor": {
+        "desc": "A medium sized village with a farm complex, a church and several residential houses. ",
+        "X Coordinate": 7,
+        "Y Coordinate": 6,
+        "name": "Novy Sobor",
+        "exits": {
+            "north east": "Gorka",
+            "south east": "Guglovo",
+            "south": "Mogilevka",
+            "south west": "Zub",
+            "west": "Stary Sobor"
+        },
+        "ground": []
+    },
+    "Polana": {
+        "desc": "A medium village with mostly residential houses. There is a supermarket and a church",
+        "X Coordinate": 10,
+        "Y Coordinate": 6,
+        "name": "Polana",
+        "exits": {
+            "north east": "Berezino",
+            "east": "Nizhynoye",
+            "south east": "Factory",
+            "south": "Dolina",
+            "north west": "Gorka"
+        },
+        "ground": []
+    },
+    "Nizhynoye": {
+        "desc": "A small coastal village with a long low barn next to the road. To the north west there is a good sized apple orchard. On the south side are several residantial buildings. The main coastal road is to the east.",
+        "X Coordinate": 13,
+        "Y Coordinate": 6,
+        "name": "Nizhynoye",
+        "exits": {
+            "north": "Berezino Industrial",
+            "south": "Factory",
+            "west": "Polana",
+            "north west": "Berezino"
+        },
+        "ground": []
+    },
+    "Rogovo/Pogorevka": {
+        "desc": "Two adjacent villages, separated by a small line of pine trees. There are many residential buildings. A barn, a gas station and a church. ",
+        "X Coordinate": 4,
+        "Y Coordinate": 7,
+        "name": "Rogovo/Pogorevka",
+        "exits": {
+            "north": "Veresnik",
+            "north east": "Stary Sobor",
+            "south east": "Zub",
+            "south": "Kozlovka",
+            "south west": "Green Mountain",
+            "north west": "Pustoshka"
+        },
+        "ground": []
+    },
+    "Guglovo": {
+        "desc": "A small village split by a main road with open fields sloping downwards and away on either side. There are a handful of residential buildings. Across the valley to the north east is a single barn. ",
+        "X Coordinate": 8,
+        "Y Coordinate": 7,
+        "name": "Guglovo",
+        "exits": {
+            "south east": "Staroye",
+            "north west": "Novy Sobor"
+        },
+        "ground": []
+    },
+    "Dolina": {
+        "desc": "A small village which, apart from a single large, red industrial barn, consists only of residential houses. ",
+        "X Coordinate": 11,
+        "Y Coordinate": 7,
+        "name": "Dolina",
+        "exits": {
+            "north": "Polana",
+            "east": "Solnichniy",
+            "south west": " Staroye",
+            "north west": "Polana"
+        },
+        "ground": []
+    },
+    "Factory": {
+        "desc": "A series of large, towering silos and a large factory. Several other, smaller industrial buildings surround the area. A pair of barns sit on the south west side. Just to the east is the main coastal road. To the west is a long, sloping hill densly covered in tall, green pines. ",
+        "X Coordinate": 13,
+        "Y Coordinate": 7,
+        "name": "Factory",
+        "exits": {
+            "north": "Nizhynoye",
+            "south": "Solnichniy",
+            "south west": "Dolina",
+            "north west": "Polana"
+        },
+        "ground": []
+    },
+    "Green Mountain": {
+        "desc": "A double fenced-in complex in a small clearing atop a hill of dense pines. Two military buildings straddle a huge red and white television tower mast. The tower can be entered by a small door on the north side. A small passage way leads to a ladder running up the center of the tower. It leads to a platform 20 meters up the tower. ",
+        "X Coordinate": 3,
+        "Y Coordinate": 8,
+        "name": "Green Mountain",
+        "exits": {
+            "north": "Pustoshka",
+            "north east": "Rogovo/Pogorevka",
+            "south east": "Kozlovka",
+            "south west": "Zelenogorsk"
+        },
+        "ground": []
+    },
+    "Zub": {
+        "desc": "A large ruined castle with a short gate tower and a large central square stone tower. It sits on a hill of dense pines. ",
+        "X Coordinate": 6,
+        "Y Coordinate": 8,
+        "name": "Zub",
+        "exits": {
+            "north": "Stary Sobor",
+            "north east": "Novy Sobor",
+            "south east": "Mogilevka",
+            "north west": "Rogovo/Pogorevka"
+        },
+        "ground": []
+    },
+    "Staroye": {
+        "desc": "A small village, dominated by a farm complex on the west side. A main road runs through the center. Several residential buildings and a gas station on the south side. ",
+        "X Coordinate": 10,
+        "Y Coordinate": 8,
+        "name": "Staroye",
+        "exits": {
+            "east": "Msta",
+            "south east": "Rog",
+            "south": "Elektrozavodsk",
+            "south west": "Mogilevka",
+            "north west": "Guglovo"
+        },
+        "ground": []
+    },
+    "Msta": {
+        "desc": "A medium vilage with many residential houses, a barn on the west side and a hunting stand to the north",
+        "X Coordinate": 11,
+        "Y Coordinate": 8,
+        "name": "Msta",
+        "exits": {
+            "south": "Rog",
+            "west": "Staroye"
+        },
+        "ground": []
+    },
+    "Solnichniy": {
+        "desc": "A medium coastal town with many residential houses and a few farm buildings. To the south west is a pit mine dug into the steep slope of the forested hillside. ",
+        "X Coordinate": 13,
+        "Y Coordinate": 8,
+        "name": "Solnichniy",
+        "exits": {
+            "north": "Factory",
+            "south": "Coast_13_9",
+            "north west": "Dolina"
+        },
+        "ground": []
+    },
+    "Zelenogorsk": {
+        "desc": "A large town with a large industrial complex on the south west side. Many residential buildings including a school and a hospital. A barn sits on the north east side. There is a gas station a little way up the north eastern road. A large church sits at the crossroads at the center of town. ",
+        "X Coordinate": 2,
+        "Y Coordinate": 9,
+        "name": "Zelenogorsk",
+        "exits": {
+            "north": "Pustoshka",
+            "north east": "Green Mountain",
+            "east": "Kozlovka",
+            "south west": "Pavlovo"
+        },
+        "ground": []
+    },
+    "Kozlovka": {
+        "desc": "A small vilage with a barn and a few residential houses. ",
+        "X Coordinate": 4,
+        "Y Coordinate": 9,
+        "name": "Kozlovka",
+        "exits": {
+            "north": "Rogovo/Pogorevka",
+            "south east": "Chernogorsk",
+            "south": "Balota Airfield",
+            "west": "Zelenogorsk",
+            "north west": "Green Mountain"
+        },
+        "ground": []
+    },
+    "Mogilevka": {
+        "desc": "A medium village with several barns, a small chapel on the west side and several residential buildings.",
+        "X Coordinate": 7,
+        "Y Coordinate": 9,
+        "name": "Mogilevka",
+        "exits": {
+            "north": "Novy Sobor",
+            "north east": "Staroye",
+            "south east": "Elekrozavodsk",
+            "south": "Prigorodki",
+            "south west": "Chernogorsk",
+            "north west": "Zub"
+        },
+        "ground": []
+    },
+    "Coast_13_9": {
+        "desc": "Coast",
+        "X Coordinate": 13,
+        "Y Coordinate": 9,
+        "name": "Coast",
+        "exits": {
+            "north": "Solnichniy",
+            "south": "Coast_13_10"
+        },
+        "ground": []
+    },
+    "Pavlovo": {
+        "desc": "A small village with several residential buildings and two small industrial buildings. ",
+        "X Coordinate": 1,
+        "Y Coordinate": 10,
+        "name": "Pavlovo",
+        "exits": {
+            "north east": "Zelenogorsk",
+            "east": "Pavlovo Military Base",
+            "south east": "Komarovo",
+            "south": "Kamenka"
+        },
+        "ground": []
+    },
+    "Rog": {
+        "desc": "A ruined castle sitting atop a tall hill of dense pines. A single, square, stone tower sits surrounded by ruined castle walls. ",
+        "X Coordinate": 11,
+        "Y Coordinate": 10,
+        "name": "Rog",
+        "exits": {
+            "north": "Msta",
+            "south east": "Kamyshovo",
+            "south": "Coast_11_11",
+            "south west": "Elektrozavodsk",
+            "north west": "Staroye"
+        },
+        "ground": []
+    },
+    "Kamyshovo": {
+        "desc": "A medium coastal village with many residential buildings and a police station.",
+        "X Coordinate": 12,
+        "Y Coordinate": 10,
+        "name": "Kamyshovo",
+        "exits": {
+            "north east": "Solnichniy",
+            "east": "Coast_13_10",
+            "south east": "Skalisty Island",
+            "south west": "Coast_11_11",
+            "north west": "Rog"
+        },
+        "ground": []
+    },
+    "Coast_13_10": {
+        "desc": "Coast",
+        "X Coordinate": 13,
+        "Y Coordinate": 10,
+        "name": "Coast",
+        "exits": {
+            "north": "Coast_13_9",
+            "south": "Skalisty Island",
+            "west": "Kamyshovo"
+        },
+        "ground": []
+    },
+    "Pavlovo Military Base": {
+        "desc": "A large military complex surrounded by a wire fence and thick forest. There is a gate on the north side. Inside there are 3 military barracks, a large hospital building and some small industrial buildings.",
+        "X Coordinate": 2,
+        "Y Coordinate": 10,
+        "name": "Pavlovo Military Base",
+        "exits": {
+            "south east": "Komarovo",
+            "south west": "Kamenka",
+            "west": "Pavlovo"
+        },
+        "ground": []
+    },
+    "Komarovo": {
+        "desc": "A medium village with a police station, a dock with two large industrial buildings and many residential buildings. ",
+        "X Coordinate": 3,
+        "Y Coordinate": 11,
+        "name": "Komarovo",
+        "exits": {
+            "north": "Pavlovo Military Base",
+            "east": "Balota Airfield",
+            "south east": "Balota",
+            "south": "Coast_3_12",
+            "south west": "Coast_2_12",
+            "north west": "Pavlovo"
+        },
+        "ground": []
+    },
+    "Balota Airfield": {
+        "desc": "A small grass airstrip with two large green hangars and an ATC on the north west end. On the south west end are two industrial buildings. To the south west are many residential buildings (Balota). There is a large hill on the north-north-west side which overlooks the entire airstrip. The area between the north west end of the airstrip and the hill is covered in a patch of pine forest. ",
+        "X Coordinate": 4,
+        "Y Coordinate": 11,
+        "name": "Balota Airfield",
+        "exits": {
+            "north": "Kozlovka",
+            "east": "Chernogorsk",
+            "west": "Komarovo"
+        },
+        "ground": []
+    },
+    "Chernogorsk": {
+        "desc": "A very large city. Areas include a dock at the south end. A supermarket and firestation to the west. A hospital with two military tents, a town hall and many industrial buildings in the center. An apartment complex and hospital to the north west. A construction site to the north east. Many residential buildings make up for the areas between. ",
+        "X Coordinate": 6,
+        "Y Coordinate": 11,
+        "name": "Chernogorsk",
+        "exits": {
+            "north east": "Mogilevka",
+            "east": "Coast_7_11",
+            "south east": "Chernogorsk_Docks",
+            "south": "Chernogorsk_Industrial",
+            "south west": "Coast_5_12",
+            "west": "Balota Airfield",
+            "north west": "Kozlovka"
+        },
+        "ground": []
+    },
+    "Coast_7_11": {
+        "desc": "Coast",
+        "X Coordinate": 7,
+        "Y Coordinate": 11,
+        "name": "Coast",
+        "exits": {
+            "north": "Mogilevka",
+            "north east": "Prigorodki",
+            "south": "Chernogorsk_Docks",
+            "south west": "Chernogorsk_Industrial",
+            "west": "Chernogorsk"
+        },
+        "ground": []
+    },
+    "Prigorodki": {
+        "desc": "A small series of residential houses and a small farm complex. A line of hills to the north and a large plane with power lines running through to the north west. The main coastal road runs along the coast to the south.",
+        "X Coordinate": 8,
+        "Y Coordinate": 11,
+        "name": "Prigorodki",
+        "exits": {
+            "north": "Mogilevka",
+            "south east": "Coast_9_12",
+            "south west": "Coast_7_11"
+        },
+        "ground": []
+    },
+    "Coast_11_11": {
+        "desc": "Coast",
+        "X Coordinate": 11,
+        "Y Coordinate": 11,
+        "name": "Coast",
+        "exits": {
+            "north": "Rog",
+            "north east": "Kamyshovo",
+            "south west": "Elektrozavodsk"
+        },
+        "ground": []
+    },
+    "Skalisty Island": {
+        "desc": "A medium sized island. A 200 meter stretch of water separates the island from the mainland. The north of the island has a hill with a radio tower and two small huts. The island slopes downwards to the south where there is a small village on the south west side. There are  three residential buildings, a boat house and on the rocks on the south western edge, a lighthouse.",
+        "X Coordinate": 13,
+        "Y Coordinate": 11,
+        "name": "Skalisty Island",
+        "exits": {
+            "north": "Solnichniy",
+            "north west": "Kamyshovo"
+        },
+        "ground": []
+    },
+    "Kamenka": {
+        "desc": "A medium village with mostly residential houses and a dock on the south end.",
+        "X Coordinate": 1,
+        "Y Coordinate": 12,
+        "name": "Kamenka",
+        "exits": {
+            "north": "Pavlovo",
+            "north east": "Pavlovo Military Base",
+            "east": "Coast_2_12"
+        },
+        "ground": []
+    },
+    "Coast_2_12": {
+        "desc": "Coast",
+        "X Coordinate": 2,
+        "Y Coordinate": 12,
+        "name": "Coast",
+        "exits": {
+            "north east": "Komarovo",
+            "east": "Coast_3_12",
+            "west": "Kamenka"
+        },
+        "ground": []
+    },
+    "Coast_3_12": {
+        "desc": "Coast",
+        "X Coordinate": 3,
+        "Y Coordinate": 12,
+        "name": "Coast",
+        "exits": {
+            "north": "Komarovo",
+            "north east": "Balota Airfield",
+            "east": "Balota",
+            "west": "Coast_2_12"
+        },
+        "ground": []
+    },
+    "Balota": {
+        "desc": "Balota village. There is an airstrip just to the north.",
+        "X Coordinate": 4,
+        "Y Coordinate": 12,
+        "name": "Balota",
+        "exits": {
+            "north": "Balota Airfield",
+            "east": "Coast_5_12",
+            "west": "Coast_3_12",
+            "north west": "Komarovo"
+        },
+        "ground": []
+    },
+    "Coast_5_12": {
+        "desc": "Coast",
+        "X Coordinate": 5,
+        "Y Coordinate": 12,
+        "name": "Coast",
+        "exits": {
+            "north east": "Chernogorsk",
+            "east": "Chernogorsk_Industrial",
+            "west": "Balota",
+            "north west": "Balota Airfield"
+        },
+        "ground": []
+    },
+    "Chernogorsk_Industrial": {
+        "desc": "The southern industrial sector of Chernogorsk. There are many large industrial buildings.",
+        "X Coordinate": 6,
+        "Y Coordinate": 12,
+        "name": "Chernogorsk_Industrial",
+        "exits": {
+            "north": "Chernogorsk",
+            "east": "Chernogorsk_Docks",
+            "west": "Coast_5_12"
+        },
+        "ground": []
+    },
+    "Chernogorsk_Docks": {
+        "desc": "The south-eastern docks of Chernogorsk. There is a long curved strech of concrete docks and many large industrial buildings.",
+        "X Coordinate": 7,
+        "Y Coordinate": 12,
+        "name": "Chernogorsk_Docks",
+        "exits": {
+            "north": "Coast_7_11",
+            "west": "Chernogorsk_Industrial",
+            "north west": "Chernogorsk"
+        },
+        "ground": []
+    },
+    "Coast_9_12": {
+        "desc": "Coast",
+        "X Coordinate": 9,
+        "Y Coordinate": 12,
+        "name": "Coast",
+        "exits": {
+            "east": "Elektrozavodsk",
+            "north west": "Prigorodki"
+        },
+        "ground": []
+    },
+    "Elektrozavodsk": {
+        "desc": "A large city consisting of two main areas, an industrial dockland to the south and a residential town to the north. In the north side there is a hospital, church, fire station, supermarket, school and many residential houses. On the south side there is a train-station, many large industrial buildings and a long curved dock. A little apart, to the north west is a power plant with another fire station and beyond that, a hill overlooking the entire city. ",
+        "X Coordinate": 10,
+        "Y Coordinate": 12,
+        "name": "Elektrozavodsk",
+        "exits": {
+            "north": "Staroye",
+            "north east": "Rog",
+            "east": "Coast_11_11",
+            "west": "Coast_9_12",
+            "north west": "Mogilevka"
+        },
+        "ground": []
+    }
+}
