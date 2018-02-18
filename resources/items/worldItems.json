@@ -15,7 +15,7 @@
         "longdesc":"A a round-ish dull grey rock about the size of your head.",
         "takeable": true,
         "descwords":["rock"],
-        "spawntype": "ground",
+        "spawntype": "coast",
         "loottype": "weapon",
         "damage": 3000
     },
@@ -24,10 +24,20 @@
         "shortdesc":"An m16a4 assault rifle lies here.",
         "longdesc":"An m16a4 assault rifle lies here.",
         "takeable": true,
-        "descwords":["rifle, m16, m16a4, assault"],
-        "spawntype": ["military"],
+        "descwords":["rifle", "m16", "m16a4", "assault"],
+        "spawntype": "military",
         "loottype": "weapon",
         "damage": 6000
+    },
+    "G17":{
+        "ground": "A glock 17 pistol lies here.",
+        "shortdesc":"A glock 17 pistol.",
+        "longdesc":"A glock 17 pistol.",
+        "takeable": true,
+        "descwords":["glock", "g17", "G17", "pistol"],
+        "spawntype": "military",
+        "loottype": "weapon",
+        "damage": 3500
     },
     "bandage":{
         "ground": "A packaged bandage lies on the ground",
@@ -35,16 +45,34 @@
         "longdesc": "A single packaged bandage used to stop bleeding.",
         "takeable": true,
         "descwords": ["bandage"],
-        "spawntype": ["residential", "medical"],
+        "spawntype": "medical",
         "loottype": "medical"
     },
     "baked beans": {
         "ground":"A tin of baked beans",
         "shortdesc":"A tin of baked beans",
-        "long desc": "A single tin of backed beans",
+        "longdesc": "A single tin of backed beans",
         "takable": true,
         "descwords": ["beans", "baked","can", "food"],
-        "spawntype": ["residential"],
+        "spawntype": "residential",
         "loottype": "food"
-    }
+    },
+    "scrap metal": {
+        "ground": "Some scrap metal lies here",
+        "shortdesc": "Some scrap metal",
+        "longdesc": "Scrap metal can be used to repair things",
+        "takeable": true,
+        "descwords": ["scrap", "metal", "scrapmetal"],
+        "spawntype": "industrial",
+        "loottype": "industrial"
+    },
+    "road flares": {
+        "ground": "Some road flares lie here",
+        "shortdesc": "some road flares",
+        "long desc": "A set of 10 individual road flares that give off a very bright red light",
+        "takeable": true,
+        "descwords":["roadflares", "flares", "road flares"],
+        "spawntype": "residential",
+        "loottype": "consumable"
+        }
 }

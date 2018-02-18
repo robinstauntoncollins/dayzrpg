@@ -1,9 +1,0 @@
-{
-    "axe":{
-        GROUNDDESC:"A rusty axe lies on the ground",
-        SHORTDESC:"a rusty axe",
-        LONGDESC:"A full sized wood-chopping axe with a rusted and dull axe head.",
-        TAKEABLE: True,
-        DESCWORDS:["axe"]
-    }
-}

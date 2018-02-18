@@ -9,15 +9,14 @@ class MapTile(object):
     def __init__(self):
         pass
 
+
     def intro_text(self):
         raise NotImplementedError()
+
 
     def modify_player(self, player):
         raise NotImplementedError()
 
-    def adjacent_moves(self):
-        """Returns all move actions for adjacent tiles"""
-        moves = []
 
 
 class Location(MapTile):
@@ -29,24 +28,48 @@ class Location(MapTile):
         self.name = self.info[config.NAME]
         self.desc = self.info[config.DESC]
         self.exits = self.info[config.EXITS]
+        self.ground = self.info[config.GROUND]
+        self.loctype = self.info[config.LOCTYPE]
+        self.items = []
+        self.spawn_items()
+        self.intro_text()
+      
         
+
     def intro_text(self):
         print(self.name+'\n'+'='*len(self.name))
         for line in textwrap.wrap(self.desc, config.SCREEN_WIDTH):
             print(line)
 
         self.show_exits()
+        #self.show_ground_items()
+
 
     def modify_player(self, player):
         # Area has no effect on Player
         pass
     
+
     def show_exits(self):
         print('='*len(self.name))
         print("You see the following exits: ")
         for direction,location in self.exits.items():
             print("{} to {}".format(direction,location))
 
+
+    def show_ground_items(self):
+        if len(self.ground) == 0:
+            print("\nYou see nothing on the ground")
+        else:
+            print("\nOn the ground you see: ")
+            for item in self.ground:
+                print(item.name)
+
+
+    def spawn_items(self):
+        """A function to handle spawning of items in this location"""
+        self.items = r_world.populate_room(self.loctype)
+        self.ground.extend(self.items)
 
 
 
@@ -56,6 +79,5 @@ class Building(MapTile):
 
 
 if __name__ == '__main__':
-    cl = Location(config.starting_location)
-    cl.intro_text()
-    cl.show_exits()
+    #cl = Location(config.starting_location)
+    cl = Location('Factory')

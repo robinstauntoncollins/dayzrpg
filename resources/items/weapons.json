@@ -7,6 +7,7 @@
         "descwords":["axe"],
         "spawntype": "farm",
         "loottype": "weapon",
+        "rarity": 0.05
         "damage": 6000
     },
     "rock":{
@@ -17,34 +18,17 @@
         "descwords":["rock"],
         "spawntype": "ground",
         "loottype": "weapon",
+        "rarity": 
         "damage": 3000
     },
     "m16a4":{
         "ground": "An m16a4 assault rifle lies here.",
-        "shortdesc":"An m16a4 assault rifle lies here.",
-        "longdesc":"An m16a4 assault rifle lies here.",
+        "shortdesc":"An m16a4 assault rifle.",
+        "longdesc":"An m16a4 assault rifle.",
         "takeable": true,
         "descwords":["rifle, m16, m16a4, assault"],
         "spawntype": ["military"],
         "loottype": "weapon",
         "damage": 6000
-    },
-    "bandage":{
-        "ground": "A packaged bandage lies on the ground",
-        "shortdesc": "A packaged bandage",
-        "longdesc": "A single packaged bandage used to stop bleeding.",
-        "takeable": true,
-        "descwords": ["bandage"],
-        "spawntype": ["residential", "medical"],
-        "loottype": "medical"
-    },
-    "baked beans": {
-        "ground":"A tin of baked beans",
-        "shortdesc":"A tin of baked beans",
-        "long desc": "A single tin of backed beans",
-        "takable": true,
-        "descwords": ["beans", "baked","can", "food"],
-        "spawntype": ["residential"],
-        "loottype": "food"
     }
 }

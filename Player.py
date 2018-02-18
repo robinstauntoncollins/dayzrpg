@@ -16,6 +16,9 @@ class Player(object):
 
         # FLAGS
         self.bleeding = False
+        self.pain = False
+        self.arm_broken = False
+        self.leg_broken = False
         # OTHER
         self.location = config.starting_location
         self.victory = False
@@ -23,8 +26,8 @@ class Player(object):
         self.inventory = [Items.Bandage(), Items.Roadflares()]
         self.primary = []
         self.secondary = []
-        self.got_backpack = True
-        self.backpack = [Items.Crowbar(), Items.Rock()]
+        self.got_backpack = False
+        self.backpack = []
         self.toolbelt = [Items.Flashlight()]
         
     # STATUS
@@ -144,8 +147,9 @@ class Player(object):
 
     def take(self, item):
         """Function to take item from area/location into inventory"""
+        
         self.inventory.append(item)
-        return "You took the {}".format(item.name)
+        return "You took the {}".format(item[config.NAME])
 
 
 if __name__ == '__main__':

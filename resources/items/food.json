@@ -1,0 +1,11 @@
+{
+    "baked beans": {
+        "ground":"A tin of baked beans",
+        "shortdesc":"A tin of baked beans",
+        "long desc": "A single tin of backed beans",
+        "takable": true,
+        "descwords": ["beans", "baked","can", "food"],
+        "spawntype": ["residential"],
+        "loottype": "food"
+    }
+}

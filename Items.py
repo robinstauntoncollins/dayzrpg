@@ -49,6 +49,11 @@ class Axe(Weapon):
                        description = "Melee: A full sized chopping axe. Good for chopping down trees.",
                        damage = 6000)
 
+##class AssaultRifle(Weapon):
+##    def __init__(self,ammotype):
+##        super().__init__(name
+        
+
         
 class Crowbar(Weapon):
     def __init__(self):
@@ -83,6 +88,18 @@ class Bandage(Consumable):
         """Allows the player to apply a bandage to himself"""
         self.amount -=1
         return "You apply a bandage to yourself"
+
+class Food(Consumable):
+    def __init__(self, name, description, amound, food_val):
+        self.food_val = food_val
+        super().__init__(name = "config.NAME",
+                         description = "config.DESC",
+                         amount = 1)
+
+    def eat(self, player):
+        player.hunger -= self.food_val
+        
+                         
 
 
 if __name__ == '__main__':

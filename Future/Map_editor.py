@@ -15,7 +15,7 @@ LOOTED = 'looted'
 LOOTTYPE = 'loot type'
 XCOORD = 'X Coordinate'
 YCOORD = 'Y Coordinate'
-LOCTYPE = 'location type'
+LOCTYPE = 'locationtype'
 N = 'north'
 NE = 'north east'
 E = 'east'
@@ -27,7 +27,7 @@ NW = 'north west'
 U = 'up'
 D = 'down'
 
-WORLDPATH = r'D:\Users\RSTAUNTO\Desktop\Python\dayzrpg\Future\Chernarus_v3.json'
+WORLDPATH = r'D:\Users\RSTAUNTO\Desktop\Python\dayzrpg\Future\Chernarus_v4.json'
 TESTPATH = r'D:\Users\RSTAUNTO\Desktop\Python\dayzrpg\Future\test_fix.json'
 location_types = ['large city', 'city', 'large town',
                'town', 'small town', 'village',
@@ -168,7 +168,7 @@ def write_new_world(world):
 
 def edit(world):
     for k,v in world.items():
-        v[GROUND] = []
+        v[config.GROUND] = []
 
     return world
 
@@ -185,10 +185,42 @@ def fix_names(world):
             v[NAME] = 'Coast'
     return world
 
+def add_loctype(world):
+    
+    military = 'military'
+    residential = 'residential'
+    industrial = 'industrial'
+    medical = 'medical'
+    farm = 'farm'
+    coast = 'coast'
+    castle = 'castle'
+    loctype = None
+    for location,info in world.items():
+        print("Current Location: {}".format(location))
+        loctype = int(input("Enter 0)Military, 1)Residential, 2)Farm 3)Medical 4)Industrial, 5)Coast, 6)Castle : "))
+        if loctype == 0:
+            info[LOCTYPE] = military
+        elif loctype == 1:
+            info[LOCTYPE] = residential
+        elif loctype == 2:
+            info[LOCTYPE] = farm
+        elif loctype == 3:
+            info[LOCTYPE] = medical
+        elif loctype == 4:
+            info[LOCTYPE] = industrial
+        elif loctype == 5:
+            info[LOCTYPE] = coast
+        elif loctype == 6:
+            info[LOCTYPE] = castle
+        else:
+            print("unknown type")
+            info[LOCTYPE] = None
+
+    return world
 
 if __name__ == '__main__':
     fix_world = load(WORLDPATH)
-    new_world = edit(fix_world)
+    new_world = add_loctype(fix_world)
     #print(new_world)
     write_new_world(new_world)
 

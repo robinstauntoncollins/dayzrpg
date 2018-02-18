@@ -1,0 +1,11 @@
+{
+	"bandage":{
+        "ground": "A packaged bandage lies on the ground",
+        "shortdesc": "A packaged bandage",
+        "longdesc": "A single packaged bandage used to stop bleeding.",
+        "takeable": true,
+        "descwords": ["bandage"],
+        "spawntype": ["residential", "medical"],
+        "loottype": "medical"
+    }
+}
