@@ -1,106 +1,42 @@
+import r_world
+import config
+
+
 # BASE ITEM
 class Item(object):
-    """The base class for all items"""
-    def __init__(self, name, description):
-        self.name = name
-        self.description = description
+    def __init__(self, item):
+        self.item = r_world.get_item_data(item)
+        self.name = self.item[config.NAME]
+        self.shortdesc = self.item[config.SHORTDESC]
+        self.longdesc = self.item[config.LONGDESC]
+        self.takeable = self.item[config.TAKEABLE]
+        self.descwords = self.item[config.DESCWORDS]
+        self.loottype = self.item[config.LOOTTYPE]
+
     def __str__(self):
-        return "{}\n{}".format(self.name, self.description)
-
-
-# LEVEL 1 DERIVED
-class Consumable(Item):
-    def __init__(self, name, description, amount):
-        self.amount = amount
-        super().__init__(name, description)
-
-    def use(self):
-        """Use this item"""
-        self.amount -=1
+        return self.name
 
 
 class Weapon(Item):
     headdmg = 13000
 
-    def __init__(self, name, description, damage):
-        self.damage = damage
-        super().__init__(name, description)
+    def __init__(self, item):
+        super().__init__(item)
+        self.damage = self.item[config.DAMAGE]
 
 
-# TOOLS
-class Flashlight(Item):
-    def __init__(self):
-        super().__init__(name = "Flashlight",
-                         description = "A battery powered torch. Illuminates dark areas.")
-
-
-# LEVEL 2 Derived
-# WEAPONS
-class Rock(Weapon):
-    def __init__(self):
-        super().__init__(name="Rock",
-                       description = "Melee: A head-sized rock. Smashy Smashy!",
-                       damage = 3000)
-
-
-class Axe(Weapon):
-    def __init__(self):
-        super().__init__(name="Axe",
-                       description = "Melee: A full sized chopping axe. Good for chopping down trees.",
-                       damage = 6000)
-
-##class AssaultRifle(Weapon):
-##    def __init__(self,ammotype):
-##        super().__init__(name
-        
-
-        
-class Crowbar(Weapon):
-    def __init__(self):
-        super().__init__(name="Crowbar",
-                       description = "Melee: A crowbar. Used for prying things open",
-                       damage = 6000)
-
-
-class Roadflares(Consumable):
-    def __init__(self):
-        self.damage = 0
-        super().__init__(name = "Roadflares",
-                         description = "10 individual Roadflares. Produces very bright red light in a large area.",
-                         amount = 10
-                         )
+# LEVEL 1 DERIVED
+class Consumable(Item):
+    def __init__(self, item):
+        super().__init__(item)
+        self.amount = 1
 
     def use(self):
         """Use this item"""
-        self.amount -=1
-        self.description = """{} individual Roadflares.
-                            Produces very bright red light in a large area.""".format(self.amount)
-
-
-# CONSUMABLES
-class Bandage(Consumable):
-    def __init__(self):
-        super().__init__(name="Bandage",
-                         description="A packaged bandage for covering wounds",
-                         amount=1)
-
-    def apply(self):
-        """Allows the player to apply a bandage to himself"""
-        self.amount -=1
-        return "You apply a bandage to yourself"
-
-class Food(Consumable):
-    def __init__(self, name, description, amound, food_val):
-        self.food_val = food_val
-        super().__init__(name = "config.NAME",
-                         description = "config.DESC",
-                         amount = 1)
-
-    def eat(self, player):
-        player.hunger -= self.food_val
-        
-                         
+        self.amount -= 1
 
 
 if __name__ == '__main__':
-    roadflares = Roadflares()
+    name = 'bandage'
+    bn = Item(name)
+    print(bn.name)

@@ -20,7 +20,7 @@ class Game(cmd.Cmd):
     def do_quit(self, arg):
         """Quit the game"""
         print("Thanks for playing")
-        return True #Exits Cmd application loop in command.cmdloop()
+        return True # Exits Cmd application loop in command.cmdloop()
 
     def help_combat(self):
         print("Combat is not implemented in this program yet.")
@@ -94,62 +94,125 @@ class Game(cmd.Cmd):
         else:
             print("You don't see much in that direction")
 
+    # def do_take(self, arg):
+    #     """Take an item from ground to inventory"""
+    #     itemToTake = arg.lower() # format string
+    #
+    #     if itemToTake == '': # if nothing print message
+    #         print("Take what? Type 'look ground' to see what lies here")
+    #         return
+    #     cantTake = False # initialise flag
+    #     # return a list of items in the ground of current location that match the item mentioned in take command
+    #     # Also return the list of all items, probably should change this
+    #     matching_items,world_items = r_world.get_all_items_matching_desc(itemToTake, self.location.ground)
+    #     # For all items that match the command string, if they're takeable, take them.
+    #     for item in matching_items:
+    #         if world_items[item.name].get(config.TAKEABLE, True) == False:
+    #             cantTake = True
+    #             continue
+    #         print("You take {}".format(world_items[item.name][config.SHORTDESC]))
+    #         self.location.ground.remove(item)
+    #         self.player.inventory.append(item)
+    #         return
+    #
+    #     if cantTake:
+    #         print("You cannot take {}".format(itemToTake))
+    #     else:
+    #         print("You don't find that on the ground")
+
     def do_take(self, arg):
         """Take an item from ground to inventory"""
-        itemToTake = arg.lower() # format string
-    
-        if itemToTake == '': # if nothing print message
+        itemToTake = arg.lower()  # format string
+        if itemToTake == '':  # if nothing print message
             print("Take what? Type 'look ground' to see what lies here")
             return
-        cantTake = False # initialise flag
-        # return a list of items in the ground of current location that match the item mentioned in take command
-        # Also return the list of all items, probably should change this
-        matching_items,world_items = r_world.get_all_items_matching_desc(itemToTake, self.location.ground)
+        cantTake = False
+        matching_items = []
+        for item in self.location.ground:
+            if itemToTake in item.descwords:
+                matching_items.append(item)
 
-        # For all items that match the command string, if they're takeable, take them. 
         for item in matching_items:
-            print(item)
-            if world_items[item.name].get(config.TAKEABLE, True) == False:
+            if not item.takeable:
                 cantTake = True
                 continue
-            print("You take {}".format(world_items[item.name][config.SHORTDESC]))
-            self.location.ground.remove(item)
+            print("You take {}".format(item.name))
             self.player.inventory.append(item)
+            self.location.ground.remove(item)
             return
-
         if cantTake:
-            print("You cannot take {}".format(itemToTake))
+            print("You can't take {}".format(itemToTake))
         else:
-            print("That is not on the ground")
+            print("You don't find that on the ground")
 
     def do_hold(self, arg):
         """Equips weapon from inventory to primary or secondary slot"""
         self.player.equip_primary(arg.lower())
-        
-    def do_drop(self, arg):
-        """Command should call drop_from_inventory function in player class"""
-        itemToDrop = arg.lower()
-        items = []
-        for item in self.player.inventory:
-            items.append(item.name.lower())
-        invDescWords = r_world.get_all_desc_words(items)
-        if itemToDrop not in invDescWords:
-            print("You do not have a {} in your inventory.".format(itemToDrop))
-            return
-        item,world_items = get_first_item_matching_desc(itemToDrop, items)
-        if item != None:
-            print("You drop {}".format(world_items[item.name][config.SHORTDESC]))
-            self.player.inventory.remove(item)
-            self.location.ground.append(item)
-            
-        #self.player.drop_from_inventory(arg.lower())
-        
-    def do_useItem(self,arg):
-        """Command to use a variety of items"""
-        itemToUse = arg.lower()
-        
-        pass
 
+    def do_drop(self, arg):
+        itemToDrop = arg.lower()
+        print(itemToDrop)
+        if itemToDrop == '':
+            print("Drop what? Type 'i' to see your inventory")
+            return
+        matching_items = []
+        for item in self.player.inventory:
+            print(item.descwords)
+            if itemToDrop not in item.descwords:
+                print("You have no {} in your inventory".format(itemToDrop))
+                return
+            else:
+                matching_items.append(item)
+        print(matching_items)
+        for item in matching_items:
+            if item is not None:
+                print("You drop {}".format(item.name))
+                self.player.inventory.remove(item)
+                self.location.ground.append(item)
+
+
+
+    # def do_drop(self, arg):
+    #     """Command should call drop_from_inventory function in player class"""
+    #     itemToDrop = arg.lower()  # = 'rock'
+    #     items = []
+    #     for item in self.player.inventory:
+    #         items.append(item.name.lower())
+    #     invDescWords = r_world.get_all_desc_words(items)
+    #     if itemToDrop not in invDescWords:
+    #         print("You do not have a {} in your inventory.".format(itemToDrop))
+    #         return
+    #     item,world_items = r_world.get_first_item_matching_desc(itemToDrop, items)
+    #
+    #     if item != None:
+    #         print("You drop {}".format(world_items[item][config.SHORTDESC]))
+    #         for pitem in self.player.inventory:
+    #             if pitem.name == item:
+    #                 self.player.inventory.remove(pitem)
+    #                 self.location.ground.append(pitem)
+            
+        # self.player.drop_from_inventory(arg.lower())
+        
+##    def do_useItem(self,arg):
+##        """Command to use a variety of items"""
+##        itemToUse = arg.lower()
+##        items = []
+##        for item in self.player.inventory:
+##            items.append(item.name.lower())
+##        invDescWords = r_world.get_all_desc_words(items)
+##        if itemToUse not in invDescWords:
+##            print("You do not have a {} in your inventory.".format(itemToDrop))
+##            return
+##        item,w
+##    def search_inv(self, arg):
+##        itemToUse = arg.lower()
+##        items = []
+##        for item in self.player.inventory:
+##            items.append(item.name.lower())
+##        invDescWords = r_world.get_all_desc_words(items)
+##        if itemToUse not in invDescWords:
+##            print("You do not have a {} in your inventory.".format(itemToDrop))
+##            return
     do_n = do_north
     do_ne = do_northeast
     do_e = do_east

@@ -1,7 +1,6 @@
 """A module with functions to handle interaction with data in JSON files"""
 import json
 import config
-import random
 import Items
 
 PATH = r'D:\Users\RSTAUNTO\Desktop\Python\dayzrpg\resources'
@@ -14,7 +13,7 @@ MEDICAL = WORLDITEMSPATH + '\medical.json'
 start = config.starting_location
 
 
-def get_world_data(path=WORLDPATH,room_name=None, mode='r'):
+def get_world_data(room_name=None, path=WORLDPATH, mode='r'):
     """A function that returns world dictionary if no name is given
     and returns specific room if name is given."""
     with open(path, mode) as file:
@@ -26,16 +25,16 @@ def get_world_data(path=WORLDPATH,room_name=None, mode='r'):
         return world[room_name]
 
 
-def get_item_data(path=ALLITEMS, item_name=None, mode='r'):
+def get_item_data(item_name=None, path=ALLITEMS, mode='r'):
     """A function to retrieve data from worldItems file.
     Can be given a specific item"""
     with open(path,  mode) as file:
         world_items = json.load(file)
 
-    if item_name is None:
-        return world_items
-    else:
+    if item_name is not None:
         return world_items[item_name]
+    else:
+        return world_items
 
 
 def get_location(loc):
@@ -59,33 +58,34 @@ def generate_items(item_type):
 
     return item_dict
 
-def create_object(name, description):
-    the_object = Items.Item(name, description)
+
+def create_object(name):
+    the_object = Items.Item(name)
     return the_object
 
-def create_weapon(name, description, damage):
+
+def create_weapon(name):
     """Creates a weapon object using name and description from the json object"""
-    the_object = Items.Weapon(name,description, damage)
+    the_object = Items.Weapon(name)
     return the_object
 
 
 def populate_room(loctype):
     """Function to populate a room's ground list based on it's loot type with item objects
     when the room object is created."""
-    #Look t
+
     room_items = []
     world_items = get_item_data()
     for item,info in world_items.items():
-        if info[config.SPAWNTYPE] == loctype:
-            room_items.append(create_object(item, info[config.SHORTDESC]))
-            if info[config.LOOTTYPE] == 'weapon':
-                room_items.append(create_weapon(item, info[config.SHORTDESC], info[config.DAMAGE]))
-            elif info[config.LOOTTYPE] == 'medical':
-                room_items.append(create_object(item, info[config.SHORTDESC]))
-            else:
-                room_items.append(create_object(item, info[config.SHORTDESC]))
+        for each in info[config.SPAWNTYPE]:
+            if each == loctype:
+                if info[config.LOOTTYPE] == 'weapon':
+                    room_items.append(create_weapon(item))
+                elif info[config.LOOTTYPE] == 'medical':
+                    room_items.append(create_object(item))
+                else:
+                    room_items.append(create_object(item))
 
-            
     return room_items
 
 
@@ -111,10 +111,11 @@ def get_all_first_desc_words(item_list):
 
 
 def get_first_item_matching_desc(desc, item_list):
+
     world_items = get_item_data()
     unique_item_list = list(set(item_list))  # make itemList unique
     for item in unique_item_list:
-        if desc in world_items[item.name][config.DESCWORDS]:
+        if desc in world_items[item][config.DESCWORDS]:
             return item, world_items
     return None
 
@@ -124,13 +125,13 @@ def get_all_items_matching_desc(desc, item_list):
     unique_item_list = list(set(item_list))  # make itemList unique
     matching_items = []
     for item in unique_item_list:
-        if desc in world_items[item.name][config.DESCWORDS]:
+        if desc in world_items[item][config.DESCWORDS]:
             matching_items.append(item)
     return matching_items,world_items
 
-        
 
 if __name__ == '__main__':
-    world_items = get_item_data()
+    item_list =  [Items.Item('axe'), Items.Item('baked beans')]
+    matching,items = get_all_items_matching_desc('axe', item_list )
 
     

@@ -1,7 +1,6 @@
 import config
 import Items
-import random
-import Room
+
 
 class Player(object):
     
@@ -23,12 +22,12 @@ class Player(object):
         self.location = config.starting_location
         self.victory = False
         # EQUIPMENT
-        self.inventory = [Items.Bandage(), Items.Roadflares()]
+        self.inventory = [Items.Item('bandage'), Items.Item('roadflares')]
         self.primary = []
         self.secondary = []
         self.got_backpack = False
         self.backpack = []
-        self.toolbelt = [Items.Flashlight()]
+        self.toolbelt = [Items.Item('flashlight')]
         
     # STATUS
     def is_alive(self):
@@ -39,7 +38,7 @@ class Player(object):
         if direction in room.exits.keys():
             print("You move to the {}".format(direction))
             self.location  = room.exits[direction]
-            #room = Room.Location(self.location)
+            # room = Room.Location(self.location)
         else:
             print("You can't go that way\n")
 
@@ -74,14 +73,24 @@ class Player(object):
     def print_inventory(self):
         print('='*2+"Items"+'='*2)
         for item in self.inventory:
-            print(item.name)
+            if hasattr(item, 'amount'):
+                print(item.name, item.amount)
+            else:
+                print(item.name)
+            
         print('='*2+"Toolbelt"+'='*2)
         for item in self.toolbelt:
-            print(item.name)
+            if hasattr(item, 'amount'):
+                print(item.name, item.amount)
+            else:
+                print(item.name)
         if self.got_backpack:
             print('='*2+"Backpack"+'='*2)
             for item in self.backpack:
-                print(item.name)
+                if hasattr(item, 'amount'):
+                    print(item.name, item.amount)
+                else:
+                    print(item.name)
 
     def equip_primary(self, item):
         """Equips an item from player's inventory"""
@@ -156,6 +165,6 @@ if __name__ == '__main__':
     player = Player()
     player.print_inventory()
     print()
-    player.drop_from_main_inventory("Roadflares")
+    player.drop_from_main_inventory("roadflares")
     print()
     player.print_inventory()

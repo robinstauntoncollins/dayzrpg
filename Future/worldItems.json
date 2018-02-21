@@ -1,5 +1,6 @@
 {
     "axe":{
+        "name": "axe",
         "ground": "A rusty axe lies on the ground",
         "shortdesc":"a rusty axe",
         "longdesc":"A full sized wood-chopping axe with a rusted and dull axe head.",
@@ -10,6 +11,7 @@
         "damage": 6000
     },
     "rock":{
+        "name":"rock",
         "ground":"A a rock lies here",
         "shortdesc":"a large rock",
         "longdesc":"A a round-ish dull grey rock about the size of your head.",
@@ -20,6 +22,7 @@
         "damage": 3000
     },
     "m16a4":{
+        "name":"m16a4",
         "ground": "An m16a4 assault rifle lies here.",
         "shortdesc":"An m16a4 assault rifle lies here.",
         "longdesc":"An m16a4 assault rifle lies here.",
@@ -30,6 +33,7 @@
         "damage": 6000
     },
     "bandage":{
+        "name":"bandage",
         "ground": "A packaged bandage lies on the ground",
         "shortdesc": "A packaged bandage",
         "longdesc": "A single packaged bandage used to stop bleeding.",
@@ -39,6 +43,7 @@
         "loottype": "medical"
     },
     "baked beans": {
+        "name":"baked beans",
         "ground":"A tin of baked beans",
         "shortdesc":"A tin of baked beans",
         "long desc": "A single tin of backed beans",
