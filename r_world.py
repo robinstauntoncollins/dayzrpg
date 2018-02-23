@@ -64,6 +64,11 @@ def create_object(name):
     return the_object
 
 
+def create_consumable(name, amount):
+    the_object = Items.Consumable(name, amount)
+    return the_object
+
+
 def create_weapon(name):
     """Creates a weapon object using name and description from the json object"""
     the_object = Items.Weapon(name)
@@ -76,13 +81,15 @@ def populate_room(loctype):
 
     room_items = []
     world_items = get_item_data()
+    print('roadflares amount: ',world_items['roadflares'][config.AMOUNT])
     for item,info in world_items.items():
-        for each in info[config.SPAWNTYPE]:
-            if each == loctype:
-                if info[config.LOOTTYPE] == 'weapon':
+        for spawntype in info[config.SPAWNTYPE]:
+            if spawntype == loctype:
+                if 'weapon' in info[config.LOOTTYPE]:
                     room_items.append(create_weapon(item))
-                elif info[config.LOOTTYPE] == 'medical':
-                    room_items.append(create_object(item))
+                elif 'consumable' in info[config.LOOTTYPE]:
+                    print(info[config.AMOUNT])
+                    room_items.append(create_consumable(item,info[config.AMOUNT]))
                 else:
                     room_items.append(create_object(item))
 

@@ -1,6 +1,5 @@
 import config
 from Room import Location
-import r_world
 import cmd
 from Player import Player
 
@@ -20,54 +19,55 @@ class Game(cmd.Cmd):
     def do_quit(self, arg):
         """Quit the game"""
         print("Thanks for playing")
-        return True # Exits Cmd application loop in command.cmdloop()
+        return True  # Exits Cmd application loop in command.cmdloop()
 
     def help_combat(self):
         print("Combat is not implemented in this program yet.")
 
     def do_north(self, arg):
         """Go to the north if possible"""
-        self.player.move_direction('north',self.location)
+        self.player.move_direction('north', self.location)
         self.location = Location(self.player.location)
 
-    def do_northeast(self,arg):
+    def do_northeast(self, arg):
         """Go to the northeast if possible"""
-        self.player.move_direction('north east',self.location)
+        self.player.move_direction('north east', self.location)
         self.location = Location(self.player.location)
 
-    def do_east(self,arg):
+    def do_east(self, arg):
         """Go to the east if possible"""
-        self.player.move_direction('east',self.location)
+        self.player.move_direction('east', self.location)
         self.location = Location(self.player.location)
 
     def do_southeast(self, arg):
         """Go to the southeast if possible"""
-        self.player.move_direction('south east',self.location)
+        self.player.move_direction('south east', self.location)
         self.location = Location(self.player.location)
 
-    def do_south(self,arg):
+    def do_south(self, arg):
         """Go to the south if possible"""
-        self.player.move_direction('south',self.location)
+        self.player.move_direction('south', self.location)
         self.location = Location(self.player.location)
 
     def do_southwest(self, arg):
         """Go to the southwest if possible"""
-        self.player.move_direction('south west',self.location)
+        self.player.move_direction('south west', self.location)
         self.location = Location(self.player.location)
 
-    def do_west(self,arg):
+    def do_west(self, arg):
         """Go to the wesst if possible"""
-        self.player.move_direction('west',self.location)
+        self.player.move_direction('west', self.location)
         self.location = Location(self.player.location)
 
     def do_northwest(self, arg):
         """Go to the northwest if possible"""
-        self.player.move_direction('north west',self.location)
+        self.player.move_direction('north west', self.location)
         self.location = Location(self.player.location)
 
     def do_inventory(self, arg):
         """Display a list of items in your inventory"""
         self.player.print_inventory()
+        # self.player.print_inv_dict()
 
     def do_look(self, arg):
         """Look at an item, direction, or the area:
@@ -75,73 +75,57 @@ class Game(cmd.Cmd):
         "look <direction>" - display the description of the area in that direction
         "look exits" - display the description of all adjacent areas
         "look <item>" - display the description of an item on the ground or in your inventory"""
-        lookingAt = arg.lower()
+        looking_at = arg.lower()
         # Just 'look' command
-        if lookingAt == '':
+        if looking_at == '':
             self.location.intro_text()
             return
         # 'look exits' command
-        if lookingAt == 'exits':
+        if looking_at == 'exits':
             self.location.show_exits()
             return
         # 'look <direction>' command
-        if lookingAt in config.DIRECTIONS and lookingAt in self.location.exits:
-            print("You see {} to the {}".format(self.location.exits[lookingAt], lookingAt))
+        if looking_at in config.DIRECTIONS and looking_at in self.location.exits:
+            print("You see {} to the {}".format(self.location.exits[looking_at], looking_at))
 
-        if lookingAt == 'ground':
+        if looking_at == 'ground':
             self.location.show_ground_items()
             
         else:
             print("You don't see much in that direction")
 
-    # def do_take(self, arg):
-    #     """Take an item from ground to inventory"""
-    #     itemToTake = arg.lower() # format string
-    #
-    #     if itemToTake == '': # if nothing print message
-    #         print("Take what? Type 'look ground' to see what lies here")
-    #         return
-    #     cantTake = False # initialise flag
-    #     # return a list of items in the ground of current location that match the item mentioned in take command
-    #     # Also return the list of all items, probably should change this
-    #     matching_items,world_items = r_world.get_all_items_matching_desc(itemToTake, self.location.ground)
-    #     # For all items that match the command string, if they're takeable, take them.
-    #     for item in matching_items:
-    #         if world_items[item.name].get(config.TAKEABLE, True) == False:
-    #             cantTake = True
-    #             continue
-    #         print("You take {}".format(world_items[item.name][config.SHORTDESC]))
-    #         self.location.ground.remove(item)
-    #         self.player.inventory.append(item)
-    #         return
-    #
-    #     if cantTake:
-    #         print("You cannot take {}".format(itemToTake))
-    #     else:
-    #         print("You don't find that on the ground")
-
     def do_take(self, arg):
         """Take an item from ground to inventory"""
-        itemToTake = arg.lower()  # format string
-        if itemToTake == '':  # if nothing print message
+        item_to_take = arg.lower()  # format string
+        if item_to_take == '':  # if nothing print message and exit
             print("Take what? Type 'look ground' to see what lies here")
             return
-        cantTake = False
+        cant_take = False
         matching_items = []
         for item in self.location.ground:
-            if itemToTake in item.descwords:
+            if item_to_take in item.descwords:
                 matching_items.append(item)
+        # print(matching_items)
 
         for item in matching_items:
             if not item.takeable:
-                cantTake = True
+                cant_take = True
                 continue
             print("You take {}".format(item.name))
-            self.player.inventory.append(item)
+            self.player.transfer_object(item, self.player.inventory)
             self.location.ground.remove(item)
             return
-        if cantTake:
-            print("You can't take {}".format(itemToTake))
+            # for inv_item in self.player.inventory:
+            #     if item.name == inv_item.name:
+            #         if hasattr(item, 'amount'):
+            #             self.player.inventory[matching_items.index(item)].amount += 1
+            #             self.location.ground.remove(item)
+            #     else:
+            #         self.location.ground.remove(item)
+            #         self.player.inventory.append(item)
+            # return
+        if cant_take:
+            print("You can't take {}".format(item_to_take))
         else:
             print("You don't find that on the ground")
 
@@ -150,69 +134,65 @@ class Game(cmd.Cmd):
         self.player.equip_primary(arg.lower())
 
     def do_drop(self, arg):
-        itemToDrop = arg.lower()
-        print(itemToDrop)
-        if itemToDrop == '':
+        item_to_drop = arg.lower()
+        print(item_to_drop)
+        if item_to_drop == '':
             print("Drop what? Type 'i' to see your inventory")
             return
         matching_items = []
         for item in self.player.inventory:
-            print(item.descwords)
-            if itemToDrop not in item.descwords:
-                print("You have no {} in your inventory".format(itemToDrop))
-                return
-            else:
+            if item_to_drop in item.descwords:
                 matching_items.append(item)
-        print(matching_items)
+        # for k,v in self.player.inv_dict.items():
+        #    if item_to_drop in v.descwords:
+        #        matching_items.append(v)
+        # print(matching_items)
+
         for item in matching_items:
             if item is not None:
-                print("You drop {}".format(item.name))
-                self.player.inventory.remove(item)
-                self.location.ground.append(item)
+                if hasattr(item, 'amount'):
+                    if self.player.inventory[matching_items.index(item)].amount > 1:
+                        self.player.inventory[matching_items.index(item)].amount -= 1
+                    else:
+                        self.player.inventory.remove(item)
 
+                    print("You drop {}".format(item.name))
+                    self.location.ground.append(item)
+                else:
+                    # del self.player.inv_dict[item_to_drop]
+                    self.player.inventory.remove(item)
+                    print("You drop {}".format(item.name))
+                    for gr_item in self.location.ground:
+                        if gr_item.name == item.name and hasattr(gr_item, 'amount'):
+                            gr_item.amount +=1
+                        else:
+                            self.location.ground.append(item)
+            else:
+                print("You have no {} in your inventory".format(item_to_drop))
+            return
 
-
-    # def do_drop(self, arg):
-    #     """Command should call drop_from_inventory function in player class"""
-    #     itemToDrop = arg.lower()  # = 'rock'
-    #     items = []
-    #     for item in self.player.inventory:
-    #         items.append(item.name.lower())
-    #     invDescWords = r_world.get_all_desc_words(items)
-    #     if itemToDrop not in invDescWords:
-    #         print("You do not have a {} in your inventory.".format(itemToDrop))
-    #         return
-    #     item,world_items = r_world.get_first_item_matching_desc(itemToDrop, items)
-    #
-    #     if item != None:
-    #         print("You drop {}".format(world_items[item][config.SHORTDESC]))
-    #         for pitem in self.player.inventory:
-    #             if pitem.name == item:
-    #                 self.player.inventory.remove(pitem)
-    #                 self.location.ground.append(pitem)
-            
-        # self.player.drop_from_inventory(arg.lower())
         
-##    def do_useItem(self,arg):
-##        """Command to use a variety of items"""
-##        itemToUse = arg.lower()
-##        items = []
-##        for item in self.player.inventory:
-##            items.append(item.name.lower())
-##        invDescWords = r_world.get_all_desc_words(items)
-##        if itemToUse not in invDescWords:
-##            print("You do not have a {} in your inventory.".format(itemToDrop))
-##            return
-##        item,w
-##    def search_inv(self, arg):
-##        itemToUse = arg.lower()
-##        items = []
-##        for item in self.player.inventory:
-##            items.append(item.name.lower())
-##        invDescWords = r_world.get_all_desc_words(items)
-##        if itemToUse not in invDescWords:
-##            print("You do not have a {} in your inventory.".format(itemToDrop))
-##            return
+#    def do_useItem(self,arg):
+#        """Command to use a variety of items"""
+#        itemToUse = arg.lower()
+#        items = []
+#        for item in self.player.inventory:
+#            items.append(item.name.lower())
+#        invDescWords = r_world.get_all_desc_words(items)
+#        if itemToUse not in invDescWords:
+#            print("You do not have a {} in your inventory.".format(itemToDrop))
+#            return
+#        item,w
+#    def search_inv(self, arg):
+#        itemToUse = arg.lower()
+#        items = []
+#        for item in self.player.inventory:
+#            items.append(item.name.lower())
+#        invDescWords = r_world.get_all_desc_words(items)
+#        if itemToUse not in invDescWords:
+#            print("You do not have a {} in your inventory.".format(itemToDrop))
+#            return
+
     do_n = do_north
     do_ne = do_northeast
     do_e = do_east

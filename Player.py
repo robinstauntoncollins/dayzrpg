@@ -1,14 +1,15 @@
 import config
 import Items
+from Container import Container
 
 
 class Player(object):
     
-    def __init__(self, name = "Survivor", sex = "Male"):
+    def __init__(self, name = "Survivor", gender="Male", location = config.starting_location):
         # PLAYER_INFO
         # STATS
         self.name = name
-        self.sex = sex
+        self.gender = gender
         self.hp = 12000
         self.hunger = 100
         self.thirst = 100
@@ -19,16 +20,20 @@ class Player(object):
         self.arm_broken = False
         self.leg_broken = False
         # OTHER
-        self.location = config.starting_location
+        self.location = location
         self.victory = False
+
         # EQUIPMENT
-        self.inventory = [Items.Item('bandage'), Items.Item('roadflares')]
+        self.inv_dict = {'bandage': Items.Consumable('bandage'),'roadflares': Items.Consumable('roadflares', 10)}
+        self.inventory = [Items.Consumable('bandage'), Items.Consumable('roadflares',10)]
         self.primary = []
         self.secondary = []
         self.got_backpack = False
         self.backpack = []
+        self.backpack_dict = {}
         self.toolbelt = [Items.Item('flashlight')]
-        
+        self.toolbelt_dict = {'flashlight': Items.Item('flashlight')}
+
     # STATUS
     def is_alive(self):
         return self.hp > 0
@@ -68,17 +73,51 @@ class Player(object):
 ##        self.do_action(available_moves[r])
         pass
 
-
     # INVENTORY/EQUIPMENT
+    def print_inv_dict(self):
+        item_count = {}
+        print('=' * 2 + "Items" + '=' * 2)
+        for k,v in self.inv_dict.items():
+            if v.name in item_count.keys():
+                item_count[v.name] += 1
+            else:
+                item_count[v.name] = 1
+
+        for k,v in self.inv_dict.items():
+            print(v.name,item_count[v.name])
+            if item_count[v.name] > 1:
+                print(v.name , item_count[v.name])
+            else:
+                print(v.name)
+            
+        print('='*2+"Toolbelt"+'='*2)
+        for k,v in self.toolbelt_dict.items():
+            if hasattr(v, 'amount'):
+                print(v.name, v.amount)
+            else:
+                print(v.name)
+
+        if self.got_backpack:
+            print('='*2+"Backpack"+'='*2)
+            for k,v in self.backpack_dict.items():
+                if hasattr(v, 'amount'):
+                    print(v.name, v.amount)
+                else:
+                    print(v.name)
+
     def print_inventory(self):
-        print('='*2+"Items"+'='*2)
+        print('=' * 2 + "Items" + '=' * 2)
+        #for item in self.inventory:
+        #    if item_count[item.name] > 1:
+        #        print(item.name , item_count[item.name])
+        #    else:
+        #        print(item.name)
         for item in self.inventory:
             if hasattr(item, 'amount'):
                 print(item.name, item.amount)
             else:
                 print(item.name)
-            
-        print('='*2+"Toolbelt"+'='*2)
+        print('=' * 2 + "Toolbelt" + '=' * 2)
         for item in self.toolbelt:
             if hasattr(item, 'amount'):
                 print(item.name, item.amount)
@@ -91,6 +130,28 @@ class Player(object):
                     print(item.name, item.amount)
                 else:
                     print(item.name)
+
+    def transfer_object(self, obj, target_list):
+        """Function to handle transferring an object from location.ground to player.inventory"""
+        # print("Object: ", obj.name)
+        # print()
+        for item in target_list:
+            # print(item.name)
+            if item.name == obj.name:
+               # print("Obj found in inventory")
+                if hasattr(item, 'amount'):
+                   # print("Item has amount")
+                    item.amount += 1
+                    #print(item.name, item.amount)
+                    return
+                else:
+                    #print("Item has no amount")
+                    target_list.append(obj)
+                    return
+            else:
+                #print("Item not found in inventory, adding it")
+                target_list.append(obj)
+                return
 
     def equip_primary(self, item):
         """Equips an item from player's inventory"""
@@ -156,15 +217,12 @@ class Player(object):
 
     def take(self, item):
         """Function to take item from area/location into inventory"""
-        
         self.inventory.append(item)
         return "You took the {}".format(item[config.NAME])
+
 
 
 if __name__ == '__main__':
     player = Player()
     player.print_inventory()
-    print()
-    player.drop_from_main_inventory("roadflares")
-    print()
-    player.print_inventory()
+

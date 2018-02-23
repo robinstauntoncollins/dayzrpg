@@ -22,6 +22,7 @@ EDIBLE = 'edible'
 DESCWORDS = 'descwords'
 LOOTED = 'looted'
 LOOTTYPE = 'loottype'
+AMOUNT = 'amount'
 XCOORD = 'X Coordinate'
 YCOORD = 'Y Coordinate'
 SPAWNTYPE = 'spawntype'
@@ -34,6 +35,7 @@ MEDICAL = 'medical'
 FARM = 'farm'
 COAST = 'coast'
 CASTLE = 'castle'
+
 
 DIRECTIONS = [N,NE,E,SE,S,SW,W,NW,U,D]
 

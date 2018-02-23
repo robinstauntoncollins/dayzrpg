@@ -27,9 +27,12 @@ class Weapon(Item):
 
 # LEVEL 1 DERIVED
 class Consumable(Item):
-    def __init__(self, item):
+    def __init__(self, item, amount = 1):
         super().__init__(item)
-        self.amount = 1
+        self.amount = amount
+
+    def __str__(self):
+        return "{0}, {1}".format(self.name, self.amount)
 
     def use(self):
         """Use this item"""
@@ -37,6 +40,8 @@ class Consumable(Item):
 
 
 if __name__ == '__main__':
-    name = 'bandage'
-    bn = Item(name)
-    print(bn.name)
+    item = Item('bandage')
+    flrs = Consumable('roadflares',10)
+    print(flrs)
+    flrs.use()
+    print(flrs)

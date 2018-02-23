@@ -40,7 +40,8 @@
         "takeable": true,
         "descwords": ["bandage"],
         "spawntype": ["residential", "medical"],
-        "loottype": "medical"
+        "loottype": ["medical","consumable"],
+        "amount": 1
     },
     "baked beans": {
         "name":"Baked Beans",
@@ -50,7 +51,8 @@
         "takeable": true,
         "descwords": ["beans", "baked","can", "food"],
         "spawntype": ["residential"],
-        "loottype": "food"
+        "loottype": ["consumable","food"],
+        "amoount": 1
     },
     "roadflares": {
         "name": "Road Flares",
@@ -67,7 +69,8 @@
             "residential",
             "military"
         ],
-        "loottype": "consumable"
+        "loottype": ["consumable","tool"],
+        "amount": 10
     },
     "flashlight": {
         "name": "Flashlight",
@@ -83,6 +86,21 @@
         ],
         "spawntype": ["residential"],
         "loottype": "tool"
+    },
+    "scrap metal": {
+        "name": "Scrap Metal",
+        "ground": "Some pieces of scrap metal lie here",
+        "shortdesc": "Miscellaneous scrap metal",
+        "longdesc": "Scrap metal can be used to craft certain items",
+        "takeable": true,
+        "descwords": [
+            "scrap",
+            "scrapmetal",
+            "metal"
+        ],
+        "spawntype": ["industrial"],
+        "loottype": ["consumable","crafting"],
+        "amount": 1
     }
 
 }
