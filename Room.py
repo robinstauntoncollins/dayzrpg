@@ -54,7 +54,10 @@ class Location(MapTile):
         else:
             print("\nOn the ground you see: ")
             for item in self.ground:
-                print(item.name)
+                if hasattr(item, 'amount'):
+                    print(item.name, item.amount)
+                else:
+                    print(item.name)
 
     def spawn_items(self):
         """A function to handle spawning of items in this location"""

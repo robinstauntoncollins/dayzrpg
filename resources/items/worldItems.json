@@ -7,7 +7,7 @@
         "takeable": true,
         "descwords":["axe"],
         "spawntype": ["residential", "farm"],
-        "loottype": "weapon",
+        "loottype": ["weapon"],
         "damage": 6000
     },
     "rock":{
@@ -18,7 +18,7 @@
         "takeable": true,
         "descwords":["rock"],
         "spawntype": ["ground", "coast"],
-        "loottype": "weapon",
+        "loottype": ["weapon"],
         "damage": 3000
     },
     "m16a4":{
@@ -27,9 +27,9 @@
         "shortdesc":"An m16a4 assault rifle lies here.",
         "longdesc":"An m16a4 assault rifle lies here.",
         "takeable": true,
-        "descwords":["rifle, m16, m16a4, assault"],
+        "descwords":["rifle", "m16", "m16a4", "assault"],
         "spawntype": ["military"],
-        "loottype": "weapon",
+        "loottype": ["weapon"],
         "damage": 6000
     },
     "bandage":{
@@ -63,14 +63,15 @@
         "descwords": [
             "roadflares",
             "flares",
-            "road flares"
+            "road flares",
+            "flare"
         ],
         "spawntype": [
             "residential",
             "military"
         ],
         "loottype": ["consumable","tool"],
-        "amount": 10
+        "amount": 1
     },
     "flashlight": {
         "name": "Flashlight",
@@ -85,7 +86,7 @@
             "torch"
         ],
         "spawntype": ["residential"],
-        "loottype": "tool"
+        "loottype": ["tool"]
     },
     "scrap metal": {
         "name": "Scrap Metal",
@@ -101,6 +102,19 @@
         "spawntype": ["industrial"],
         "loottype": ["consumable","crafting"],
         "amount": 1
+    },
+    "fountain": {
+        "name": "Large fountain",
+        "ground": "A large fountain is here",
+        "shortdesc": "A large circular fountain",
+        "longdesc": "A large circular fountain with a center piece",
+        "takeable": false,
+        "descwords": [
+            "fountain"
+        ],
+        "spawntype": ["residential"],
+        "loottype": ["none"]
+
     }
 
 }

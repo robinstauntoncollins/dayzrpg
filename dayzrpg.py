@@ -94,84 +94,81 @@ class Game(cmd.Cmd):
         else:
             print("You don't see much in that direction")
 
+    def get_matching_items(self, input_item, location):
+        matching_items = []
+        for item in location:
+            if input_item in item.descwords:
+                matching_items.append(item)
+        return matching_items
+
+    def transfer_object(self, origin, obj, destination):
+        """Function to handle transferring an object from location.ground to player.inventory"""
+        # Check if origin item has amount attribute
+        for ori_item in origin:
+            if ori_item.name == obj.name:
+                if hasattr(ori_item, 'amount') and ori_item.amount > 1:
+                    ori_item.amount -= 1
+                else:
+                    origin.remove(ori_item)
+
+        # Check if destination item has amount attribute
+        for dest_item in destination:
+            if dest_item.name == obj.name:
+                if hasattr(dest_item, 'amount'):
+                    dest_item.amount += 1
+                    return
+                else:
+                    destination.append(obj)
+                    return
+        destination.append(obj)
+
     def do_take(self, arg):
         """Take an item from ground to inventory"""
         item_to_take = arg.lower()  # format string
+
         if item_to_take == '':  # if nothing print message and exit
             print("Take what? Type 'look ground' to see what lies here")
             return
-        cant_take = False
-        matching_items = []
-        for item in self.location.ground:
-            if item_to_take in item.descwords:
-                matching_items.append(item)
-        # print(matching_items)
 
-        for item in matching_items:
+        cant_take = False
+        for item in self.get_matching_items(item_to_take, self.location.ground):
             if not item.takeable:
                 cant_take = True
                 continue
-            print("You take {}".format(item.name))
-            self.player.transfer_object(item, self.player.inventory)
-            self.location.ground.remove(item)
+            print("You take the {}".format(item.name))
+            self.transfer_object(self.location.ground, item, self.player.inventory)
             return
-            # for inv_item in self.player.inventory:
-            #     if item.name == inv_item.name:
-            #         if hasattr(item, 'amount'):
-            #             self.player.inventory[matching_items.index(item)].amount += 1
-            #             self.location.ground.remove(item)
-            #     else:
-            #         self.location.ground.remove(item)
-            #         self.player.inventory.append(item)
-            # return
+
         if cant_take:
             print("You can't take {}".format(item_to_take))
         else:
             print("You don't find that on the ground")
 
-    def do_hold(self, arg):
-        """Equips weapon from inventory to primary or secondary slot"""
-        self.player.equip_primary(arg.lower())
-
     def do_drop(self, arg):
+        """Drops item from inventory to ground.
+        Type 'drop <item>' """
         item_to_drop = arg.lower()
-        print(item_to_drop)
+
         if item_to_drop == '':
             print("Drop what? Type 'i' to see your inventory")
             return
-        matching_items = []
-        for item in self.player.inventory:
-            if item_to_drop in item.descwords:
-                matching_items.append(item)
-        # for k,v in self.player.inv_dict.items():
-        #    if item_to_drop in v.descwords:
-        #        matching_items.append(v)
-        # print(matching_items)
 
-        for item in matching_items:
+        for item in self.get_matching_items(item_to_drop, self.player.inventory):
             if item is not None:
-                if hasattr(item, 'amount'):
-                    if self.player.inventory[matching_items.index(item)].amount > 1:
-                        self.player.inventory[matching_items.index(item)].amount -= 1
-                    else:
-                        self.player.inventory.remove(item)
-
-                    print("You drop {}".format(item.name))
-                    self.location.ground.append(item)
-                else:
-                    # del self.player.inv_dict[item_to_drop]
-                    self.player.inventory.remove(item)
-                    print("You drop {}".format(item.name))
-                    for gr_item in self.location.ground:
-                        if gr_item.name == item.name and hasattr(gr_item, 'amount'):
-                            gr_item.amount +=1
-                        else:
-                            self.location.ground.append(item)
+                self.transfer_object(self.player.inventory, item, self.location.ground)
+                print("You drop {}".format(item.name))
             else:
                 print("You have no {} in your inventory".format(item_to_drop))
             return
 
-        
+    def do_hold(self, arg):
+        """Equips weapon from inventory to primary or secondary slot"""
+        matching_items = self.get_matching_items(arg.lower(), self.player.inventory)
+        for item in matching_items:
+            print(item.name)
+
+        self.player.equip_primary(matching_items[0])
+
 #    def do_useItem(self,arg):
 #        """Command to use a variety of items"""
 #        itemToUse = arg.lower()

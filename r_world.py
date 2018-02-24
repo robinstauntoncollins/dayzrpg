@@ -81,15 +81,16 @@ def populate_room(loctype):
 
     room_items = []
     world_items = get_item_data()
-    print('roadflares amount: ',world_items['roadflares'][config.AMOUNT])
     for item,info in world_items.items():
         for spawntype in info[config.SPAWNTYPE]:
             if spawntype == loctype:
                 if 'weapon' in info[config.LOOTTYPE]:
                     room_items.append(create_weapon(item))
                 elif 'consumable' in info[config.LOOTTYPE]:
-                    print(info[config.AMOUNT])
-                    room_items.append(create_consumable(item,info[config.AMOUNT]))
+                    try:
+                        room_items.append(create_consumable(item,info[config.AMOUNT]))
+                    except KeyError:
+                        continue
                 else:
                     room_items.append(create_object(item))
 

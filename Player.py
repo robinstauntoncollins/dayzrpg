@@ -24,15 +24,13 @@ class Player(object):
         self.victory = False
 
         # EQUIPMENT
-        self.inv_dict = {'bandage': Items.Consumable('bandage'),'roadflares': Items.Consumable('roadflares', 10)}
-        self.inventory = [Items.Consumable('bandage'), Items.Consumable('roadflares',10)]
+        self.inventory = [Items.Consumable('bandage'), Items.Consumable('roadflares',1)]
         self.primary = []
         self.secondary = []
         self.got_backpack = False
         self.backpack = []
         self.backpack_dict = {}
         self.toolbelt = [Items.Item('flashlight')]
-        self.toolbelt_dict = {'flashlight': Items.Item('flashlight')}
 
     # STATUS
     def is_alive(self):
@@ -65,7 +63,6 @@ class Player(object):
         else:
             print("{} HP is {}.".format(enemy.name, enemy.hp))
 
-
     def flee(self, tile):
         """Moves the player randomly to an adjacent tile"""
 ##        available_moves = tile.adjacent_moves()
@@ -74,84 +71,23 @@ class Player(object):
         pass
 
     # INVENTORY/EQUIPMENT
-    def print_inv_dict(self):
-        item_count = {}
-        print('=' * 2 + "Items" + '=' * 2)
-        for k,v in self.inv_dict.items():
-            if v.name in item_count.keys():
-                item_count[v.name] += 1
-            else:
-                item_count[v.name] = 1
-
-        for k,v in self.inv_dict.items():
-            print(v.name,item_count[v.name])
-            if item_count[v.name] > 1:
-                print(v.name , item_count[v.name])
-            else:
-                print(v.name)
-            
-        print('='*2+"Toolbelt"+'='*2)
-        for k,v in self.toolbelt_dict.items():
-            if hasattr(v, 'amount'):
-                print(v.name, v.amount)
-            else:
-                print(v.name)
-
-        if self.got_backpack:
-            print('='*2+"Backpack"+'='*2)
-            for k,v in self.backpack_dict.items():
-                if hasattr(v, 'amount'):
-                    print(v.name, v.amount)
-                else:
-                    print(v.name)
+    def print_amount_items(self, item):
+        if hasattr(item, 'amount'):
+            print(item.name, item.amount)
+        else:
+            print(item.name)
 
     def print_inventory(self):
         print('=' * 2 + "Items" + '=' * 2)
-        #for item in self.inventory:
-        #    if item_count[item.name] > 1:
-        #        print(item.name , item_count[item.name])
-        #    else:
-        #        print(item.name)
         for item in self.inventory:
-            if hasattr(item, 'amount'):
-                print(item.name, item.amount)
-            else:
-                print(item.name)
+            self.print_amount_items(item)
         print('=' * 2 + "Toolbelt" + '=' * 2)
         for item in self.toolbelt:
-            if hasattr(item, 'amount'):
-                print(item.name, item.amount)
-            else:
-                print(item.name)
+            self.print_amount_items(item)
         if self.got_backpack:
             print('='*2+"Backpack"+'='*2)
             for item in self.backpack:
-                if hasattr(item, 'amount'):
-                    print(item.name, item.amount)
-                else:
-                    print(item.name)
-
-    def transfer_object(self, obj, target_list):
-        """Function to handle transferring an object from location.ground to player.inventory"""
-        # print("Object: ", obj.name)
-        # print()
-        for item in target_list:
-            # print(item.name)
-            if item.name == obj.name:
-               # print("Obj found in inventory")
-                if hasattr(item, 'amount'):
-                   # print("Item has amount")
-                    item.amount += 1
-                    #print(item.name, item.amount)
-                    return
-                else:
-                    #print("Item has no amount")
-                    target_list.append(obj)
-                    return
-            else:
-                #print("Item not found in inventory, adding it")
-                target_list.append(obj)
-                return
+                self.print_amount_items(item)
 
     def equip_primary(self, item):
         """Equips an item from player's inventory"""
@@ -221,8 +157,9 @@ class Player(object):
         return "You took the {}".format(item[config.NAME])
 
 
-
 if __name__ == '__main__':
     player = Player()
     player.print_inventory()
+    player.inventory.append(Items.Weapon('axe'))
+
 
