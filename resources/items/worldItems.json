@@ -41,7 +41,12 @@
         "descwords": ["bandage"],
         "spawntype": ["residential", "medical"],
         "loottype": ["medical","consumable"],
-        "amount": 1
+        "amount": 1,
+        "effect": {
+            "property": "bleeding",
+            "type": "bool",
+            "value": false
+        }
     },
     "baked beans": {
         "name":"Baked Beans",
@@ -52,7 +57,12 @@
         "descwords": ["beans", "baked","can", "food"],
         "spawntype": ["residential"],
         "loottype": ["consumable","food"],
-        "amoount": 1
+        "amoount": 1,
+        "effect": {
+            "property": "hunger",
+            "type": "int",
+            "value": 10
+        }
     },
     "roadflares": {
         "name": "Road Flares",
@@ -71,7 +81,8 @@
             "military"
         ],
         "loottype": ["consumable","tool"],
-        "amount": 1
+        "amount": 1,
+        "effect": {"null":null}
     },
     "flashlight": {
         "name": "Flashlight",
@@ -101,7 +112,8 @@
         ],
         "spawntype": ["industrial"],
         "loottype": ["consumable","crafting"],
-        "amount": 1
+        "amount": 1,
+        "effect": {"null": null}
     },
     "fountain": {
         "name": "Large fountain",

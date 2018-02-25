@@ -2,12 +2,14 @@ import config
 from Room import Location
 import cmd
 from Player import Player
+import Items
 
 
 class Game(cmd.Cmd):
     def __init__(self):
         cmd.Cmd.__init__(self)
         self.player = Player()
+        self.player.inventory = [Items.Consumable('bandage'), Items.Consumable('roadflares',1)]
         self.location = Location(config.starting_location)
         
     prompt = '\n>'
@@ -79,18 +81,18 @@ class Game(cmd.Cmd):
         # Just 'look' command
         if looking_at == '':
             self.location.intro_text()
-            return
+
         # 'look exits' command
-        if looking_at == 'exits':
+        elif looking_at == 'exits':
             self.location.show_exits()
-            return
+
         # 'look <direction>' command
-        if looking_at in config.DIRECTIONS and looking_at in self.location.exits:
+        elif looking_at in config.DIRECTIONS and looking_at in self.location.exits:
             print("You see {} to the {}".format(self.location.exits[looking_at], looking_at))
 
-        if looking_at == 'ground':
+        elif looking_at == 'ground':
             self.location.show_ground_items()
-            
+
         else:
             print("You don't see much in that direction")
 
@@ -164,31 +166,18 @@ class Game(cmd.Cmd):
     def do_hold(self, arg):
         """Equips weapon from inventory to primary or secondary slot"""
         matching_items = self.get_matching_items(arg.lower(), self.player.inventory)
-        for item in matching_items:
-            print(item.name)
-
         self.player.equip_primary(matching_items[0])
 
-#    def do_useItem(self,arg):
-#        """Command to use a variety of items"""
-#        itemToUse = arg.lower()
-#        items = []
-#        for item in self.player.inventory:
-#            items.append(item.name.lower())
-#        invDescWords = r_world.get_all_desc_words(items)
-#        if itemToUse not in invDescWords:
-#            print("You do not have a {} in your inventory.".format(itemToDrop))
-#            return
-#        item,w
-#    def search_inv(self, arg):
-#        itemToUse = arg.lower()
-#        items = []
-#        for item in self.player.inventory:
-#            items.append(item.name.lower())
-#        invDescWords = r_world.get_all_desc_words(items)
-#        if itemToUse not in invDescWords:
-#            print("You do not have a {} in your inventory.".format(itemToDrop))
-#            return
+    def do_use(self,arg):
+       """Command to use a variety of items"""
+       item_to_use = arg.lower()
+       for item in self.get_matching_items(item_to_use, self.player.inventory):
+           if item is not None:
+               self.player.use(item)
+           else:
+               print("You have no {} in your inventory".format(item_to_use))
+           return
+
 
     do_n = do_north
     do_ne = do_northeast

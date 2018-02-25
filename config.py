@@ -35,6 +35,7 @@ MEDICAL = 'medical'
 FARM = 'farm'
 COAST = 'coast'
 CASTLE = 'castle'
+EFFECT = 'effect'
 
 
 DIRECTIONS = [N,NE,E,SE,S,SW,W,NW,U,D]

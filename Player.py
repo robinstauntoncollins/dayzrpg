@@ -1,7 +1,5 @@
 import config
 import Items
-from Container import Container
-
 
 class Player(object):
     
@@ -10,31 +8,24 @@ class Player(object):
         # STATS
         self.name = name
         self.gender = gender
-        self.hp = 12000
-        self.hunger = 100
-        self.thirst = 100
-
+        self.stats = {'hp': 12000, 'hunger': 100, 'thirst': 100}
         # FLAGS
-        self.bleeding = False
-        self.pain = False
-        self.arm_broken = False
-        self.leg_broken = False
+        self.flags = {'bleeding': False, 'pain': False, 'arm_broken': False, 'leg_broken': False}
         # OTHER
         self.location = location
-        self.victory = False
 
         # EQUIPMENT
-        self.inventory = [Items.Consumable('bandage'), Items.Consumable('roadflares',1)]
+        self.inventory = []
         self.primary = []
         self.secondary = []
         self.got_backpack = False
         self.backpack = []
         self.backpack_dict = {}
-        self.toolbelt = [Items.Item('flashlight')]
+        self.toolbelt = []
 
     # STATUS
     def is_alive(self):
-        return self.hp > 0
+        return self.stats['hp'] > 0
     
     # MOVEMENT
     def move_direction(self, direction, room):
@@ -156,10 +147,29 @@ class Player(object):
         self.inventory.append(item)
         return "You took the {}".format(item[config.NAME])
 
+    def use(self, item):
+        # Should check if item is consumable or has 'use' function
+        result = item.use()
+        try:
+            if result['property'] in self.flags:
+                self.flags[result['property']] = result['value']
+            print("You used {}".format(item.name))
+        except TypeError:
+            self.inventory.remove(item)
+            print("You can't use this")
+
+
 
 if __name__ == '__main__':
     player = Player()
     player.print_inventory()
-    player.inventory.append(Items.Weapon('axe'))
+    # player.inventory.append(Items.Consumable('baked beans'))
+    player.inventory.append(Items.Consumable('bandage'))
+    # player.use(player.inventory[1])
+    player.flags['bleeding'] = True
+    print(player.flags)
+    player.use(player.inventory[0])
+    print(player.flags)
+
 
 

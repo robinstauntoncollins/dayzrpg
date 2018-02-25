@@ -30,18 +30,27 @@ class Consumable(Item):
     def __init__(self, item, amount = 1):
         super().__init__(item)
         self.amount = amount
+        self.effect = self.item[config.EFFECT]
+        self.usable = True
 
     def __str__(self):
-        return "{0}, {1}".format(self.name, self.amount)
+        return "{0}, {1} - {2}".format(self.name, self.amount, self.shortdesc)
 
     def use(self):
         """Use this item"""
-        self.amount -= 1
+        if self.usable and self.amount >= 1:
+            self.amount -= 1
+            return self.effect
+        else:
+            self.usable = False
+            print("None left")
+
 
 
 if __name__ == '__main__':
-    item = Item('bandage')
     flrs = Consumable('roadflares',10)
-    print(flrs)
-    flrs.use()
-    print(flrs)
+    bnd = Consumable('bandage', 1)
+    print(bnd)
+    bnd.use()
+    print(bnd)
+    bnd.use()
