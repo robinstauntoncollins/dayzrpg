@@ -56,9 +56,9 @@ class Player(object):
 
     def flee(self, tile):
         """Moves the player randomly to an adjacent tile"""
-##        available_moves = tile.adjacent_moves()
-##        r = random.randint(0, len(available_moves) - 1)
-##        self.do_action(available_moves[r])
+        # available_moves = tile.adjacent_moves()
+        # r = random.randint(0, len(available_moves) - 1)
+        # self.do_action(available_moves[r])
         pass
 
     # INVENTORY/EQUIPMENT
@@ -68,35 +68,68 @@ class Player(object):
         else:
             print(item.name)
 
+    def print_equipment(self):
+        print()
+        if len(self.primary) == 0:
+            print("Nothing in primary")
+        else:
+            print('=' * 2 + "Primary " + '=' * 2)
+            print(self.primary[0].name)
+        print()
+        if len(self.secondary) == 0:
+            print("Nothing in secondary")
+        else:
+            print('=' * 2 + "Secondary" + '=' * 2)
+            print(self.secondary[0].name)
+
     def print_inventory(self):
-        print('=' * 2 + "Items" + '=' * 2)
-        for item in self.inventory:
-            self.print_amount_items(item)
-        print('=' * 2 + "Toolbelt" + '=' * 2)
-        for item in self.toolbelt:
-            self.print_amount_items(item)
-        if self.got_backpack:
-            print('='*2+"Backpack"+'='*2)
-            for item in self.backpack:
+        print()
+        if len(self.inventory) == 0:
+            print("Nothing in inventory")
+        else:
+            print('=' * 2 + "Items" + '=' * 2)
+            for item in self.inventory:
                 self.print_amount_items(item)
+            print()
+        if len(self.toolbelt) == 0:
+            print("Toolbelt is empty")
+        else:
+            print('=' * 2 + "Toolbelt" + '=' * 2)
+            for item in self.toolbelt:
+                self.print_amount_items(item)
+        if self.got_backpack:
+            if len(self.backpack) == 0:
+                print("Backpack is empty")
+            else:
+                print('='*2+"Backpack"+'='*2)
+                for item in self.backpack:
+                    self.print_amount_items(item)
+        else:
+            print("You aren't wearing a backpack")
 
     def equip_primary(self, item):
         """Equips an item from player's inventory"""
         # Does player have this in their inventory?
-        on_player = [self.inventory, self.backpack, self.toolbelt]
-        print(on_player)
+        # print(item.name, item.shortdesc)
+        on_player = self.inventory + self.backpack + self.toolbelt
+        # print("On Player: ", on_player)
         if item not in on_player:
-            return "You don't have a {} in your inventory".format(item.name)
+            print("You don't have a {} in your inventory".format(item.name))
+            return
         # Can player equip this item here? (Must be a weapon)
-        _parent_type = type(item).__bases__[0]
-        if not _parent_type == Items.Weapon: 
-            return "You can't equip a {} in your primary slot".format(item.name)
+        # _parent_type = type(item).__bases__[0]
+        obj_type = type(item)
+        # print(obj_type)
+        if not obj_type == Items.Weapon:
+            print("You can't equip a {} in your primary slot".format(item.name))
+            return
 
         # Is there an item already present in primary?
-        if self.primary:
+        if len(self.primary) != 0:
             print("You put your {} back in your inventory".format(self.primary[0].name))
             self.inventory.append(self.primary.pop())  # put currently equipped it back in inventory
             self.primary.append(item)  # Equip item
+            self.inventory.remove(item)
             print("You equip your {}".format(self.primary[0].name))
         # If primary slot free
         else:
@@ -118,30 +151,6 @@ class Player(object):
         else:
             print("You currently have nothing equipped in your primary slot")
 
-    def get_item_from_string(self, string, inv_location):
-        """This function takes the string argument passed by command and translates that into
-        a class object in one of the players inventory spaces"""
-        print(string)
-        print(inv_location)
-        for item in inv_location:
-            print(item.name)
-            if item.name == string:
-                return item
-            else:
-                print("Could not find item there")
-                return None
-        
-    def drop_from_main_inventory(self, string):
-        """Function should take item from player inventory and add it to GROUND location
-        of the current room"""
-        item = self.get_item_from_string(string, self.inventory)
-        print(item)
-        if item is None:
-            return "You don't have a {} to drop".format(item)
-        else:
-            self.inventory.remove(item)
-            return "You dropped a {}".format(item.name)
-
     def take(self, item):
         """Function to take item from area/location into inventory"""
         self.inventory.append(item)
@@ -149,7 +158,15 @@ class Player(object):
 
     def use(self, item):
         # Should check if item is consumable or has 'use' function
-        result = item.use()
+        result,amount = item.use()
+        print("Effect: ",result)
+        print()
+        if amount == 0:
+            print("You used your last {}".format(item.name))
+            self.inventory.remove(item)
+            return
+        if 'null' in result:
+            return
         try:
             if result['property'] in self.flags:
                 self.flags[result['property']] = result['value']
@@ -159,16 +176,14 @@ class Player(object):
             print("You can't use this")
 
 
-
 if __name__ == '__main__':
     player = Player()
     player.print_inventory()
-    # player.inventory.append(Items.Consumable('baked beans'))
-    player.inventory.append(Items.Consumable('bandage'))
-    # player.use(player.inventory[1])
+    bnd = Items.Consumable('bandage')
+    flrs = Items.Consumable('roadflares')
     player.flags['bleeding'] = True
     print(player.flags)
-    player.use(player.inventory[0])
+    player.use(flrs)
     print(player.flags)
 
 

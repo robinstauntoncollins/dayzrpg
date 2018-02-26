@@ -40,11 +40,11 @@ class Consumable(Item):
         """Use this item"""
         if self.usable and self.amount >= 1:
             self.amount -= 1
-            return self.effect
+            return self.effect, self.amount
         else:
             self.usable = False
             print("None left")
-
+            return None
 
 
 if __name__ == '__main__':

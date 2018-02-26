@@ -93,6 +93,9 @@ class Game(cmd.Cmd):
         elif looking_at == 'ground':
             self.location.show_ground_items()
 
+        elif looking_at == 'self':
+            self.player.print_equipment()
+            self.player.print_inventory()
         else:
             print("You don't see much in that direction")
 
@@ -168,16 +171,23 @@ class Game(cmd.Cmd):
         matching_items = self.get_matching_items(arg.lower(), self.player.inventory)
         self.player.equip_primary(matching_items[0])
 
-    def do_use(self,arg):
-       """Command to use a variety of items"""
-       item_to_use = arg.lower()
-       for item in self.get_matching_items(item_to_use, self.player.inventory):
-           if item is not None:
-               self.player.use(item)
-           else:
-               print("You have no {} in your inventory".format(item_to_use))
-           return
+    def do_unhold(self, arg):
+        """Un-equips weapon from primary slot to inventory"""
+        # matching_items = self.get_matching_items(arg.lower(), self.player.primary)
+        self.player.unequip_primary()
 
+    def do_use(self,arg):
+        """Command to use a variety of items"""
+        item_to_use = arg.lower()
+        matching_items = self.get_matching_items(item_to_use, self.player.inventory)
+        if not matching_items:
+            print("You have no {} in your inventory".format(item_to_use))
+            return
+        for item in matching_items:
+            if not type(item) == Items.Consumable:
+                print("You can't use that")
+            else:
+                self.player.use(item)
 
     do_n = do_north
     do_ne = do_northeast
