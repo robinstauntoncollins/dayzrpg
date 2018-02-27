@@ -32,7 +32,8 @@ class Player(object):
         if direction in room.exits.keys():
             print("You move to the {}".format(direction))
             self.location  = room.exits[direction]
-            # room = Room.Location(self.location)
+            self.stats['hunger'] -= 10
+            self.stats['thirst'] -= 15
         else:
             print("You can't go that way\n")
 
@@ -67,6 +68,11 @@ class Player(object):
             print(item.name, item.amount)
         else:
             print(item.name)
+
+    def print_stats(self):
+        print()
+        for k,v in self.stats.items():
+            print(k,v)
 
     def print_equipment(self):
         print()
@@ -161,29 +167,41 @@ class Player(object):
         result,amount = item.use()
         print("Effect: ",result)
         print()
+        if 'null' in result:
+            print("Null, returning")
+            return
+
+        if result['property'] in self.flags:
+            print("{} in self.flags".format(result['property']))
+            self.flags[result['property']] += result['value']
+            print("You used {}".format(item.name))
+        elif result['property'] in self.stats:
+            print("{} in self.stats".format(result['property']))
+            self.stats[result['property']] += result['value']
+            print("You used {}".format(item.name))
+        else:
+            print("Couldn't find that property. Item not used")
+
+        # except TypeError:
+        #     self.inventory.remove(item)
+        #     print("You can't use this")
+        # except:
+        #     print("Something went wrong in player.use()")
         if amount == 0:
             print("You used your last {}".format(item.name))
             self.inventory.remove(item)
             return
-        if 'null' in result:
-            return
-        try:
-            if result['property'] in self.flags:
-                self.flags[result['property']] = result['value']
-            print("You used {}".format(item.name))
-        except TypeError:
-            self.inventory.remove(item)
-            print("You can't use this")
 
 
 if __name__ == '__main__':
     player = Player()
     player.print_inventory()
-    bnd = Items.Consumable('bandage')
+    beans = Items.Consumable('baked beans')
     flrs = Items.Consumable('roadflares')
-    player.flags['bleeding'] = True
+    player.inventory.append(beans)
+    player.flags['hunger'] = 85
     print(player.flags)
-    player.use(flrs)
+    player.use(beans)
     print(player.flags)
 
 

@@ -96,6 +96,7 @@ class Game(cmd.Cmd):
         elif looking_at == 'self':
             self.player.print_equipment()
             self.player.print_inventory()
+            self.player.print_stats()
         else:
             print("You don't see much in that direction")
 

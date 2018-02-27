@@ -57,9 +57,25 @@
         "descwords": ["beans", "baked","can", "food"],
         "spawntype": ["residential"],
         "loottype": ["consumable","food"],
-        "amoount": 1,
+        "amount": 1,
         "effect": {
             "property": "hunger",
+            "type": "int",
+            "value": 10
+        }
+    },
+    "pepsi": {
+        "name":"Pepsi",
+        "ground":"A can of Pepsi lies here",
+        "shortdesc":"A can of Pepsi",
+        "longdesc": "A can of soda with a blue label that reads: 'Pepsi'",
+        "takeable": true,
+        "descwords": ["pepsi", "drink","can", "soda"],
+        "spawntype": ["residential"],
+        "loottype": ["consumable","drink"],
+        "amount": 1,
+        "effect": {
+            "property": "thirst",
             "type": "int",
             "value": 10
         }
