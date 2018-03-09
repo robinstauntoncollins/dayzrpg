@@ -3,15 +3,15 @@ from Room import Location
 import cmd
 from Player import Player
 import Items
+import time
+import threading
 
 
-class Game(cmd.Cmd):
-    def __init__(self):
+class Command(cmd.Cmd):
+    def __init__(self, game_ob):
         cmd.Cmd.__init__(self)
-        self.player = Player()
-        self.player.inventory = [Items.Consumable('bandage'), Items.Consumable('roadflares',1)]
-        self.location = Location(config.starting_location)
-        
+        self.g = game_ob
+
     prompt = '\n>'
 
     def default(self, arg):
@@ -20,6 +20,7 @@ class Game(cmd.Cmd):
 
     def do_quit(self, arg):
         """Quit the game"""
+        self.g.game_running = False
         print("Thanks for playing")
         return True  # Exits Cmd application loop in command.cmdloop()
 
@@ -28,75 +29,78 @@ class Game(cmd.Cmd):
 
     def do_north(self, arg):
         """Go to the north if possible"""
-        self.player.move_direction('north', self.location)
-        self.location = Location(self.player.location)
+        self.g.player.move_direction('north', self.g.location)
+        self.g.location = Location(self.g.player.location)
 
     def do_northeast(self, arg):
         """Go to the northeast if possible"""
-        self.player.move_direction('north east', self.location)
-        self.location = Location(self.player.location)
+        self.g.player.move_direction('north east', self.g.location)
+        self.g.location = Location(self.g.player.location)
 
     def do_east(self, arg):
         """Go to the east if possible"""
-        self.player.move_direction('east', self.location)
-        self.location = Location(self.player.location)
+        self.g.player.move_direction('east', self.g.location)
+        self.g.location = Location(self.g.player.location)
 
     def do_southeast(self, arg):
         """Go to the southeast if possible"""
-        self.player.move_direction('south east', self.location)
-        self.location = Location(self.player.location)
+        self.g.player.move_direction('south east', self.g.location)
+        self.g.location = Location(self.g.player.location)
 
     def do_south(self, arg):
         """Go to the south if possible"""
-        self.player.move_direction('south', self.location)
-        self.location = Location(self.player.location)
+        self.g.player.move_direction('south', self.g.location)
+        self.g.location = Location(self.g.player.location)
 
     def do_southwest(self, arg):
         """Go to the southwest if possible"""
-        self.player.move_direction('south west', self.location)
-        self.location = Location(self.player.location)
+        self.g.player.move_direction('south west', self.g.location)
+        self.g.location = Location(self.g.player.location)
 
     def do_west(self, arg):
         """Go to the wesst if possible"""
-        self.player.move_direction('west', self.location)
-        self.location = Location(self.player.location)
+        self.g.player.move_direction('west', self.g.location)
+        self.g.location = Location(self.g.player.location)
 
     def do_northwest(self, arg):
         """Go to the northwest if possible"""
-        self.player.move_direction('north west', self.location)
-        self.location = Location(self.player.location)
+        self.g.player.move_direction('north west', self.g.location)
+        self.g.location = Location(self.g.player.location)
 
     def do_inventory(self, arg):
         """Display a list of items in your inventory"""
-        self.player.print_inventory()
-        # self.player.print_inv_dict()
+        self.g.player.print_inventory()
+        # self.g.player.print_inv_dict()
 
     def do_look(self, arg):
         """Look at an item, direction, or the area:
         "look" - display the current area's description
         "look <direction>" - display the description of the area in that direction
         "look exits" - display the description of all adjacent areas
-        "look <item>" - display the description of an item on the ground or in your inventory"""
+        "look <item>" - display the description of an item on the ground or in your inventory
+        "look self" - display your equipment, inventory and stats"""
         looking_at = arg.lower()
         # Just 'look' command
         if looking_at == '':
-            self.location.intro_text()
+            self.g.location.intro_text()
 
         # 'look exits' command
         elif looking_at == 'exits':
-            self.location.show_exits()
+            self.g.location.show_exits()
 
         # 'look <direction>' command
-        elif looking_at in config.DIRECTIONS and looking_at in self.location.exits:
-            print("You see {} to the {}".format(self.location.exits[looking_at], looking_at))
+        elif looking_at in config.DIRECTIONS and looking_at in self.g.location.exits:
+            print("You see {} to the {}".format(self.g.location.exits[looking_at], looking_at))
 
         elif looking_at == 'ground':
-            self.location.show_ground_items()
+            self.g.location.show_ground_items()
 
         elif looking_at == 'self':
-            self.player.print_equipment()
-            self.player.print_inventory()
-            self.player.print_stats()
+            self.g.player.print_equipment()
+            self.g.player.print_inventory()
+            self.g.player.print_stats()
+
+        # elif looking_at in self.g.location.ground[]
         else:
             print("You don't see much in that direction")
 
@@ -137,12 +141,12 @@ class Game(cmd.Cmd):
             return
 
         cant_take = False
-        for item in self.get_matching_items(item_to_take, self.location.ground):
+        for item in self.get_matching_items(item_to_take, self.g.location.ground):
             if not item.takeable:
                 cant_take = True
                 continue
             print("You take the {}".format(item.name))
-            self.transfer_object(self.location.ground, item, self.player.inventory)
+            self.transfer_object(self.g.location.ground, item, self.g.player.inventory)
             return
 
         if cant_take:
@@ -159,9 +163,9 @@ class Game(cmd.Cmd):
             print("Drop what? Type 'i' to see your inventory")
             return
 
-        for item in self.get_matching_items(item_to_drop, self.player.inventory):
+        for item in self.get_matching_items(item_to_drop, self.g.player.inventory):
             if item is not None:
-                self.transfer_object(self.player.inventory, item, self.location.ground)
+                self.transfer_object(self.g.player.inventory, item, self.g.location.ground)
                 print("You drop {}".format(item.name))
             else:
                 print("You have no {} in your inventory".format(item_to_drop))
@@ -169,18 +173,18 @@ class Game(cmd.Cmd):
 
     def do_hold(self, arg):
         """Equips weapon from inventory to primary or secondary slot"""
-        matching_items = self.get_matching_items(arg.lower(), self.player.inventory)
-        self.player.equip_primary(matching_items[0])
+        matching_items = self.get_matching_items(arg.lower(), self.g.player.inventory)
+        self.g.player.equip_primary(matching_items[0])
 
     def do_unhold(self, arg):
         """Un-equips weapon from primary slot to inventory"""
-        # matching_items = self.get_matching_items(arg.lower(), self.player.primary)
-        self.player.unequip_primary()
+        # matching_items = self.get_matching_items(arg.lower(), self.g.player.primary)
+        self.g.player.unequip_primary()
 
     def do_use(self,arg):
         """Command to use a variety of items"""
         item_to_use = arg.lower()
-        matching_items = self.get_matching_items(item_to_use, self.player.inventory)
+        matching_items = self.get_matching_items(item_to_use, self.g.player.inventory)
         if not matching_items:
             print("You have no {} in your inventory".format(item_to_use))
             return
@@ -188,7 +192,7 @@ class Game(cmd.Cmd):
             if not type(item) == Items.Consumable:
                 print("You can't use that")
             else:
-                self.player.use(item)
+                self.g.player.use(item)
 
     do_n = do_north
     do_ne = do_northeast
@@ -202,6 +206,47 @@ class Game(cmd.Cmd):
     do_i = do_inventory
 
 
+class Game(object):
+    def __init__(self):
+        self.player = Player()
+        self.player.inventory = [Items.Consumable('bandage'), Items.Consumable('roadflares',1)]
+        self.location = Location(config.starting_location)
+
+        self.game_running = True
+
+        self.start_time = time.time()
+        self.now_time = 0.0
+        self.sleep_time = 0
+        self.next_game_tick = 0
+        self.fps = 5
+        self.skip_ticks = 1000 / self.fps
+
+    def update(self):
+        pass
+
+    def tick(self):
+        self.update()
+        self.next_game_tick += self.skip_ticks
+        self.now_time = time.time()
+        self.sleep_time = self.next_game_tick - ((self.now_time - self.start_time)*1000)
+        if self.sleep_time >= 0:
+            time.sleep(self.sleep_time/1000)
+        else:
+            print("Shit, we're running behind!")
+
+
+class Background(threading.Thread):
+    """A thread to run the game engine in the background"""
+    def __init__(self, game_object):
+        threading.Thread.__init__(self)
+        self.game = game_object
+
+    def run(self):
+        while self.game.game_running:
+            self.game.tick()
+        print("Game stopping")
+
+
 if __name__ == '__main__':
     print('='*5+" DayZ RPG "+'='*5)
     print('='*18)
@@ -209,4 +254,11 @@ if __name__ == '__main__':
     print('(Type "help" for commands.)')
     print()
     g = Game()
-    g.cmdloop()
+    cmd = Command(g)
+    background = Background(g)
+    background.start()
+    print()
+    print("Main Program continues to run")
+    cmd.cmdloop()
+    background.join()
+    print("Main program waited until background was done")
