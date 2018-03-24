@@ -1,0 +1,42 @@
+{
+  "Barracks": {
+    "desc": "",
+    "X Coordinate": 0,
+    "Y Coordinate": 0,
+    "containers": {},
+    "exits": {},
+    "ground": {},
+    "locationtype": "None"
+  },
+  "Fire Station": {},
+  "Supermarket": {},
+  "ATC": {},
+  "Prison": {},
+  "Police Station": {},
+  "Hanger": {},
+  "Military Tent": {},
+  "Bar": {},
+  "Restaurant": {},
+  "City Hall": {},
+  "Apartments": {},
+  "Office": {},
+  "Red Brick House": {},
+  "Train Station": {},
+  "Water Pump": {},
+  "Factory": {},
+  "Warehouse": {},
+  "Depo": {},
+  "Workshop": {},
+  "Garage": {},
+  "Power Station": {},
+  "Lumber Mill": {},
+  "Construction Site": {},
+  "Shed": {},
+  "Hospital": {},
+  "Clinic": {},
+  "Medical Tent": {},
+  "Barn": {},
+  "Cow Shed": {}
+}
+
+

@@ -16,7 +16,6 @@ class Container(object):
 
     def __len__(self):
         return len(self.inside)
-
     def __contains__(self, item):
         return item.raw in self.inside
 

@@ -8,6 +8,7 @@
         "descwords":["axe"],
         "spawntype": ["residential", "farm"],
         "loottype": ["weapon"],
+        "amount": 1,
         "damage": 6000
     },
     "rock":{
@@ -19,6 +20,7 @@
         "descwords":["rock"],
         "spawntype": ["ground", "coast"],
         "loottype": ["weapon"],
+        "amount": 1,
         "damage": 3000
     },
     "m16a4":{
@@ -30,6 +32,7 @@
         "descwords":["rifle", "m16", "m16a4", "assault"],
         "spawntype": ["military"],
         "loottype": ["weapon"],
+        "amount": 1,
         "damage": 6000
     },
     "bandage":{
@@ -113,7 +116,8 @@
             "torch"
         ],
         "spawntype": ["residential"],
-        "loottype": ["tool"]
+        "loottype": ["tool"],
+        "amount": 1
     },
     "scrap metal": {
         "name": "Scrap Metal",
@@ -141,7 +145,8 @@
             "fountain"
         ],
         "spawntype": ["residential"],
-        "loottype": ["none"]
+        "loottype": ["none"],
+        "amount": 1
 
     }
 

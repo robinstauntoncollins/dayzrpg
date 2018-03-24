@@ -1,6 +1,6 @@
 import textwrap
 import config
-import json
+#import json
 import r_world
 
 

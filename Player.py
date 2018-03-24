@@ -1,6 +1,7 @@
 import config
 import Items
 
+
 class Player(object):
     
     def __init__(self, name = "Survivor", gender="Male", location = config.starting_location):
@@ -164,8 +165,8 @@ class Player(object):
 
     def use(self, item):
         # Should check if item is consumable or has 'use' function
-        result,amount = item.use()
-        print("Effect: ",result)
+        result, amount = item.use()
+        print("Effect: ", result)
         print()
         if 'null' in result:
             print("Null, returning")
@@ -203,6 +204,3 @@ if __name__ == '__main__':
     print(player.flags)
     player.use(beans)
     print(player.flags)
-
-
-

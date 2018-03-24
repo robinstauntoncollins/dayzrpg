@@ -38,9 +38,7 @@ CASTLE = 'castle'
 EFFECT = 'effect'
 
 
-
-
-DIRECTIONS = [N,NE,E,SE,S,SW,W,NW,U,D]
+DIRECTIONS = [N, NE, E, SE, S, SW, W, NW, U, D]
 
 SCREEN_WIDTH = 80
 

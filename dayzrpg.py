@@ -181,7 +181,7 @@ class Command(cmd.Cmd):
         # matching_items = self.get_matching_items(arg.lower(), self.g.player.primary)
         self.g.player.unequip_primary()
 
-    def do_use(self,arg):
+    def do_use(self, arg):
         """Command to use a variety of items"""
         item_to_use = arg.lower()
         matching_items = self.get_matching_items(item_to_use, self.g.player.inventory)
@@ -209,11 +209,9 @@ class Command(cmd.Cmd):
 class Game(object):
     def __init__(self):
         self.player = Player()
-        self.player.inventory = [Items.Consumable('bandage'), Items.Consumable('roadflares',1)]
+        self.player.inventory = [Items.Consumable('bandage'), Items.Consumable('roadflares', 1)]
         self.location = Location(config.starting_location)
-
         self.game_running = True
-
         self.start_time = time.time()
         self.now_time = 0.0
         self.sleep_time = 0

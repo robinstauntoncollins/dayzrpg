@@ -7,6 +7,8 @@ class Item(object):
     def __init__(self, item):
         self.item = r_world.get_item_data(item)
         self.name = self.item[config.NAME]
+        self.raw = self.name.strip().lower()
+        self.amount = self.item[config.AMOUNT]
         self.shortdesc = self.item[config.SHORTDESC]
         self.longdesc = self.item[config.LONGDESC]
         self.takeable = self.item[config.TAKEABLE]
